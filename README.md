@@ -1,4 +1,4 @@
 Group-13
 
-Download link for GitHub desktop client
+Download link for GitHub desktop client:
 https://desktop.github.com/
