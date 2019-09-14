@@ -19,10 +19,10 @@ K = k/m;
 [t, y, v, h] = euler_bungee(T, n, g, C, K, L)
 
 %Initiate variables for Taylor2 function
-f = @(v, y) g - C*abs(v(end))*v(end) - max(0, K*(y(end) - L));
-fdash = diff(g - C*abs(v(end))*v(end) - max(0, K*(y(end) - L)));
+f = @(v, t) g - C*abs(v(end))*v(end) - max(0, K*(y(end) - L));
+fdash = @(v, t) diff(g - C*abs(v(end))*v(end) - max(0, K*(y(end) - L)));
 a = 0;
 b = T;
 alpha = y(a+1);
 %Run Second Order Taylor Function
-taylor2 = bungee_taylor2(f, fdash, a, b, alpha, n)
+[t, w, h] = bungee_taylor2(f, fdash, a, b, alpha, n)

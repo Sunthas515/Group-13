@@ -17,5 +17,5 @@ w(1) = alpha;
 
 %% perfrom iterations
 for j = 1:n
-    w(j+1) = w(j) + h*f(t(j), w(j)) + h^2/2*fdash(t(j),w(j));
+    w(j+1) = w(j) + h*(g - C*abs(w(j))*w(j) - max(0, K*(y(j) - L)));
 end
