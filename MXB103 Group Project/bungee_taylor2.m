@@ -1,4 +1,4 @@
-function [t, w, h] = bungee_taylor2(f, fdash, a, b, alpha, n)
+function [t, w, h] = bungee_taylor2(f, fdash, a, b, alpha, n, y)
 %   taylor Euler's method 
 % [t, w, h] = bungee_taylor2(f, a, b, alpha, n) performs Euler's method for 
 % solving the IVP y' = f(t,y) with initial condition y(a) = alpha 
@@ -11,11 +11,11 @@ h = (b-a)/n;
 %% create t array
 t = a:h:b;
 
-%% initialise w array
+%% initialise v array
 w = zeros(size(t));
 w(1) = alpha;
 
 %% perfrom iterations
 for j = 1:n
-    w(j+1) = w(j) + h*(g - C*abs(w(j))*w(j) - max(0, K*(y(j) - L)));
+    w(j+1) = w(j) + h*(9.8 - (0.9/80)*abs(w(j))*w(j) - max(0, (90/80)*(y(j) - 25)));
 end

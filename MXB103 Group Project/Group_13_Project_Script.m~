@@ -8,8 +8,8 @@ m = 80;
 L = 25;
 k = 90;
 g = 9.8;
-T = 100;
-n = 100;
+T = 60;
+n = 10;
 
 %Initiate C and K
 C = c/m;
@@ -25,4 +25,4 @@ a = 0;
 b = T;
 alpha = y(a+1);
 %Run Second Order Taylor Function
-[t_taylor, w_taylor, h_taylor] = bungee_taylor2(f, fdash, a, b, alpha, n, y)
+[t_taylor, y_taylor, v_taylor, h_taylor] = bungee_taylor2(f, fdash, a, b, alpha, n)
