@@ -26,12 +26,16 @@ b = T;
 alpha = y(a+1);
 
 %% Run Second Order Taylor Function
-[t_modeuler, w_modeuler, h_moduler] = modeuler_bungee(f, a, b, alpha, n)
+[t, w, h] = modeuler_bungee(f, a, b, alpha, n)
 
 %% Plot modeuler function to display jump
-
-figure();
-plot(t_modeuler, w_modeuler);
+figure()
+plot(t, w)
 title('f(t,w) of modeuler function for Jump')
 xlabel('Time (t)')
 ylabel('Position in relation to Jump (w)')
+
+hold on;
+%% Plot euler function
+plot(t, y)
+legend('modeuler', 'euler');
