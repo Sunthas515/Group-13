@@ -25,4 +25,4 @@ a = 0;
 b = T;
 alpha = y(a+1);
 %Run Second Order Taylor Function
-[t_taylor, w_taylor, h_taylor] = bungee_taylor2(f, fdash, a, b, alpha, n, y)
+[t_taylor, w_taylor, h_taylor] = modeuler_bungee(f, a, b, alpha, n)
