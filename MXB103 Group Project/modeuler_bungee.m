@@ -26,23 +26,4 @@ k3 = h*v(j);
 k4 = h*v(j+1);
 y(j+1) = y(j) + 1/2*(k3 + k4);
 end
-% for j = 1:n 
-%     k1 = h*f(t(j), w(j)); 
-%     k2 = h*f(t(j) + h, w(j) + k1); 
-%     w(j+1) = w(j) + 1/2 * (k1 + k2);
-% end
-% for j = 1:n
-%     w(j+1) = w(j) + h*f(t(j),w(j));
-% end
-% for j = 1:n
-%     y(j+1) = y(j) + h*v(j);
-%     v(j+1) = v(j) + h*(g - C*abs(v(j))*v(j) - max(0, K*(y(j) - L)));
-% end
-% for j = 1:n
-% k1 = h*v(j);
-% k2 = h*f(t(j) + h, y(j) + k1);
-% y(j+1) = y(j) + 1/2 * (k1 + k2);
-% k3 = h*(g - C*abs(v(j))*v(j) - max(0, K*(y(j) - L)));
-% k4 = h*f(t(j) + h, v(j) + k3);
-% v(j+1) = v(j) + 1/2 * (k3 + k4);
-% end
+
