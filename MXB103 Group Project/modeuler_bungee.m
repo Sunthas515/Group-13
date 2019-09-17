@@ -1,4 +1,4 @@
-function [t, y, v, h] = modeuler_bungee(T, n, g, C, K, L)
+function [t, y, v, h] = modeuler_bungee(T, n, g, C, K, L, f)
 %euler_bungee Euler's method for the bungee jumping model
 % [t, y, v, h] = euler_bungee(T, n, g, C, K, L) performs Euler's method on
 % the bungee jumping model, taking n steps from t = 0 to t = T.
@@ -19,10 +19,11 @@ v = zeros(1,n+1);
 
 %% perfrom iterations
 for j = 1:n
-k1 = v(j);
-k2 = v(j+1);
-y(j+1) = y(j) + h/2 * (k1 + k2);
-k3 = (g - C*abs(v(j))*v(j) - max(0, K*(y(j) - L)));
-k4 = (g - C*abs(v(j+1))*v(j+1) - max(0, K*(y(j+1) - L)));
-v(j+1) = v(j) + h/2 * (k3 + k4);
+k1 = h*f(t(j),y(j),v(j));
+k2 = h*f(t(j)+h,y(j),v(j)+k1);
+v(j+1) = v(j) + 1/2*(k1 + k2);
+k3 = h*v(j);
+k4 = h*v(j+1);
+y(j+1) = y(j) + 1/2*(k3 + k4);
 end
+
