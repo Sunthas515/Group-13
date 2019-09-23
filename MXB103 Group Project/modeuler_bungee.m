@@ -20,10 +20,9 @@ v = zeros(1,n+1);
 %% perfrom iterations
 for j = 1:n
 k1 = h*f(t(j),y(j),v(j));
-k2 = h*f(t(j)+h,y(j),v(j)+k1);
-v(j+1) = v(j) + 1/2*(k1 + k2);
 k3 = h*v(j);
+k2 = h*f(t(j)+h,y(j)+k3,v(j)+k1);
+v(j+1) = v(j) + 1/2*(k1 + k2);
 k4 = h*v(j+1);
 y(j+1) = y(j) + 1/2*(k3 + k4);
 end
-
