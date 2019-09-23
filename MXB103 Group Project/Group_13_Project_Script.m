@@ -16,19 +16,28 @@ C = c/m;
 K = k/m;
 
 %% Run Euler function
-[t_euler, y_euler, v_euler, h_euler] = euler_bungee(T, n, g, C, K, L)
+[t_euler, y_euler, v_euler, h_euler] = euler_bungee(T, n, g, C, K, L);
 
 %% Run Modified Euler Function
-[t_modeuler, y_modeuler, v_modeuler, h_modeuler] = modeuler_bungee(T, n, g, C, K, L)
+f = @(t,y,v) g - C*abs(v).*v - max(0, K.*(y - L));
+[t_modeuler, y_modeuler, v_modeuler, h_modeuler] = modeuler_bungee(T, n, g, C, K, L, f);
 
 %% Plot modeuler function to display jump
-figure()
+figure(1)
 plot(t_modeuler, y_modeuler)
 title('f(t,w) of modeuler function for Jump')
 xlabel('Time (t)')
 ylabel('Position in relation to Jump (w)')
 
-hold on;
+hold on
 %% Plot euler function to check modeuler
 plot(t_euler, y_euler)
 legend('modeuler', 'euler');
+hold off
+%% Plot velocity of modeuler function
+figure(2)
+plot(t_modeuler,v_modeuler)
+hold on
+%% Plot velocity of euler function
+plot(t_euler,v_euler)
+hold off
