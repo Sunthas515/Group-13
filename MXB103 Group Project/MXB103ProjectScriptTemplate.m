@@ -1,4 +1,4 @@
-%% MXB103 Project Group XX:  BUNGEE!
+%% MXB103 Project Group 13:  BUNGEE!
 
 %% 1  Introduction
 % As part of Brisbane's "New World City" transformation, the Brisbane City
@@ -7,8 +7,14 @@
 % proposal.
 %
 % In Section 2 of this report, the proposal and the key questions relating 
-% to it are discussed in more detail.  In Section 3, the model ...
-% In Section 4, etc.
+% to it are discussed in more detail.  In Section 3, the model and its
+% equation are discussed in greater detail including where values come 
+% as well as outlining assumptions, limitations and the values that shall
+% be used in the model (values for a 80kg person). In Section 4, the
+% model will be formulated and then solved using the numerical method for a
+% second order function. And finally, in Section 5, this report will answer
+% several questions regarding the specifics of the model and what will be
+% expected during the jump.
 
 %% 2  The proposal
 % What is the proposal exactly?
