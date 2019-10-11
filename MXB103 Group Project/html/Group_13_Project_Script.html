@@ -1,0 +1,308 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>MXB103 Project Group 13:  BUNGEE!</title><meta name="generator" content="MATLAB 9.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-10-12"><meta name="DC.source" content="Group_13_Project_Script.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>MXB103 Project Group 13:  BUNGEE!</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">1  Introduction</a></li><li><a href="#2">2  The proposal</a></li><li><a href="#3">The report will answer the following questions:</a></li><li><a href="#5">3 The model</a></li><li><a href="#7">3.1 Assumptions and limitations</a></li><li><a href="#8">3.2 Parameters</a></li><li><a href="#9">4 The numerical method</a></li><li><a href="#12">4.1 Parameters</a></li><li><a href="#13">4.2 Solution</a></li><li><a href="#16">5 Analysis</a></li><li><a href="#17">5.1 Timing and bounces</a></li><li><a href="#18">5.2 Maximum speed experienced by the jumper</a></li><li><a href="#19">5.3 Maximum acceleration experienced by the jumper</a></li><li><a href="#20">5.4 Distance travelled by the jumper</a></li><li><a href="#21">5.5 Automated camera system</a></li><li><a href="#22">5.6 Water touch option</a></li><li><a href="#23">6 Conclusion</a></li></ul></div><h2 id="1">1  Introduction</h2><p>As part of Brisbane's "New World City" transformation, the Brisbane City Council is investigating a proposal to allow bungee jumping off the Story Bridge. This report addresses several key questions about the proposal.</p><p>In Section 2 of this report, the proposal and the key questions relating to it are discussed in more detail.  In Section 3, the model and its equation are discussed in greater detail including where values come as well as outlining assumptions, limitations and the values that shall be used in the model (values for a 80kg person). In Section 4, the model will be formulated and then solved using the numerical method for a second order function. And finally, in Section 5, this report will answer several questions regarding the specifics of the model and what will be expected during the jump.</p><h2 id="2">2  The proposal</h2><p>The proposal calls for a platform to be installed at the very top of the bridge, from which the bungee jumps will take place. This platform will be at a height H from water level and the model produced will describe how y increases as the jumper falls towards the river.</p><h2 id="3">The report will answer the following questions:</h2><div><ol><li>Implement a second order method to solve numerically</li><li>Plot the jumper's position over time</li><li>Does the model agree with 10 bounces across 60 seconds?</li><li>What is the maximum speed and when does it occur?</li><li>What is the maximum acceleration?</li><li>Find how far the jumper travels within 60 seconds</li><li>What delay should the camera at deck height be set to?</li><li>What properties of the bungee rope could be changed to experience a 'Water Touch'?</li></ol></div><p>The approach taken for these questions has been outlined in Section 1 and will use the model described below.</p><h2 id="5">3 The model</h2><p>The equation of motion for bungee jumping is</p><p><img src="Group_13_Project_Script_eq00661610586290158342.png" alt="$$\frac{dv}{dt} = g - C|v|v - \max(0,K(y-L))$$"></p><p>Write a paragraph or two about the equation, including where it comes from and what the symbols mean.</p><h2 id="7">3.1 Assumptions and limitations</h2><p>Write a paragraph on the assumptions and limitations on the model, and a paragraph on the limitations on the study you have conducted.</p><h2 id="8">3.2 Parameters</h2><pre class="codeinput">H = 74;             <span class="comment">% Height of jump point (m)</span>
+D = 31;             <span class="comment">% Deck height (m)</span>
+c = 0.9;            <span class="comment">% Drag coefficient (kg/m)</span>
+m = 80;             <span class="comment">% Mass of the jumper (kg)</span>
+L = 25;             <span class="comment">% Length of bungee cord (m)</span>
+k = 90;             <span class="comment">% Spring constant of bungee cord (N/m)</span>
+g = 9.8;            <span class="comment">% Gravitational acceleration (m/s^2)</span>
+C = c/m;            <span class="comment">% Scaled drag coefficient</span>
+K = k/m;            <span class="comment">% Scaled spring constant</span>
+</pre><h2 id="9">4 The numerical method</h2><p>The model itself, is too complicated to solve analytically. So, numerical methods will be used to find solutions. Since the model involves two (2) unknowns, v and y, a second equation is needed that relates the two equations. This relationship is simply that the jumper's velocity (v) is the derivative of the jumper's position (y). Hence, for numerical purposes, we can think of this problem as two ODEs:</p><p><img src="Group_13_Project_Script_eq14634665888582546610.png" alt="$$\frac{dy}{dt} = v$$"></p><p><img src="Group_13_Project_Script_eq00661610586290158342.png" alt="$$\frac{dv}{dt} = g - C|v|v - \max(0,K(y-L))$$"></p><h2 id="12">4.1 Parameters</h2><pre class="codeinput">T = 60;             <span class="comment">% Final time in simulation (s)</span>
+n = 600;          <span class="comment">% Number of subintervals (you decide how many you need)</span>
+</pre><h2 id="13">4.2 Solution</h2><p>The ordinary differential equations are solved using Euler's Method.</p><pre class="codeinput">[t_euler, y_euler, v_euler, h_euler] = euler_bungee(T, n, g, C, K, L);
+</pre><p>The Second Order Differential equations are solved using Modified Euler's Method.</p><pre class="codeinput">f = @(t,y,v) g - C*abs(v).*v - max(0, K.*(y - L));
+[t_modeuler, y_modeuler, v_modeuler, h_modeuler] = modeuler_bungee(T, n, g, C, K, L, f);
+</pre><pre class="codeinput">figure(1)
+plot(t_euler, y_euler);
+xlabel(<span class="string">'Time (s)'</span>);
+ylabel(<span class="string">'Distance fallen (m)'</span>);
+axis([0 60 0 60]);
+title(<span class="string">"Figure 1: Euler's Method for Jump position"</span>);
+
+figure(2)
+plot(t_modeuler, y_modeuler);
+xlabel(<span class="string">'Time (s)'</span>);
+ylabel(<span class="string">'Distance fallen (m)'</span>);
+axis([0 60 0 60]);
+title(<span class="string">"Figure 2: Modified Euler's Method for Jump position"</span>);
+</pre><img vspace="5" hspace="5" src="Group_13_Project_Script_01.png" alt=""> <img vspace="5" hspace="5" src="Group_13_Project_Script_02.png" alt=""> <h2 id="16">5 Analysis</h2><h2 id="17">5.1 Timing and bounces</h2><p>Looking at Figure 2 we can see that across a period of 60 seconds there are 10 bounces. Thus agreeing with the proposed goal of the experience.</p><h2 id="18">5.2 Maximum speed experienced by the jumper</h2><p>The "thrill factor" of bungee jumping is atleast partly determined by the maximum velocity experienced by the jumper. What is the maximum speed and when does it occur?</p><pre class="codeinput">figure(3)
+plot(t_modeuler,v_modeuler)
+title(<span class="string">'Figure 3: Velocity of modeuler function for jump'</span>)
+xlabel(<span class="string">'Time (s)'</span>)
+ylabel(<span class="string">'Jumper Velocity (m/s)'</span>)
+
+<span class="comment">% The greatest velocity is 19.99m/s at 2.6 seconds into the jump. In</span>
+<span class="comment">% relation to the jump, this velocity occurs during the initial jump when</span>
+<span class="comment">% the bungie cord reaches its maximum length but hasn't started stretching</span>
+<span class="comment">% and slowing down the jumper.</span>
+</pre><img vspace="5" hspace="5" src="Group_13_Project_Script_03.png" alt=""> <img vspace="5" hspace="5" src="Group_13_Project_Script_04.png" alt=""> <h2 id="19">5.3 Maximum acceleration experienced by the jumper</h2><p>Another factor important for thrill-seekers is the maximum acceleration experienced. Greater acceleration means bigger thrills but too much might kill the customer. Show through mathematical methods what the jumpers maximum acceleration is and when it occurs in relation to the whole jump.</p><pre class="codeinput">a_modeuler = TTA(v_modeuler, t_modeuler, 601);
+t_modeuler2 = t_modeuler;
+t_modeuler2(:, 1) = [];
+figure(4)
+plot(t_modeuler2,a_modeuler)
+title(<span class="string">'Figure 4: Acceleration of modeuler function for jump'</span>)
+xlabel(<span class="string">'Time (s)'</span>)
+ylabel(<span class="string">'Jumper Acceleration (m/s^2)'</span>)
+
+<span class="comment">% The highest absolute acceleration is 18.29 at 4.3s. This is when the</span>
+<span class="comment">% jumper is coming up from the first bounce in relation to the overall jump.</span>
+<span class="comment">% The claim of up to 2g is supported by the model since the absolute</span>
+<span class="comment">% acceleration goes to 18.29 which is approximately 1.87g which falls within</span>
+<span class="comment">% the claim while also being close enough to 2g for customers to get a</span>
+<span class="comment">% thrill.</span>
+</pre><img vspace="5" hspace="5" src="Group_13_Project_Script_05.png" alt=""> <img vspace="5" hspace="5" src="Group_13_Project_Script_06.png" alt=""> <img vspace="5" hspace="5" src="Group_13_Project_Script_07.png" alt=""> <h2 id="20">5.4 Distance travelled by the jumper</h2><p>To compute the distance travelled by the jumper we must find the integral <img src="Group_13_Project_Script_eq05765367726068436422.png" alt="$$\int\limits_{0}^{60}|v|\mathrm{d}t$"></p><h2 id="21">5.5 Automated camera system</h2><p>Describe the question, and then answer it.  In this case, you will fit an interpolating polynomial through the four points in your solution <img src="Group_13_Project_Script_eq08830444604280721118.png" alt="$y$"> that lie either side of the camera location.  Then use that polynomial to solve for when the jumper passes the camera.</p><h2 id="22">5.6 Water touch option</h2><p>Describe the question, and then answer it.  In this case, you will re-solve the equations with different parameters for <img src="Group_13_Project_Script_eq11904963258706611165.png" alt="$L$"> and <img src="Group_13_Project_Script_eq15636846968047188835.png" alt="$k$">. Experiment to find which values work best for the water touch option, but include only the best combination that you found in the submitted code.</p><h2 id="23">6 Conclusion</h2><p>Conclude your report by summing up your findings and making any recommendations.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2018b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% MXB103 Project Group 13:  BUNGEE!
+
+%% 1  Introduction
+% As part of Brisbane's "New World City" transformation, the Brisbane City
+% Council is investigating a proposal to allow bungee jumping off the
+% Story Bridge. This report addresses several key questions about the
+% proposal.
+%
+% In Section 2 of this report, the proposal and the key questions relating 
+% to it are discussed in more detail.  In Section 3, the model and its
+% equation are discussed in greater detail including where values come 
+% as well as outlining assumptions, limitations and the values that shall
+% be used in the model (values for a 80kg person). In Section 4, the
+% model will be formulated and then solved using the numerical method for a
+% second order function. And finally, in Section 5, this report will answer
+% several questions regarding the specifics of the model and what will be
+% expected during the jump.
+
+%% 2  The proposal
+% The proposal calls for a platform to be installed at the very top of the
+% bridge, from which the bungee jumps will take place. This platform will
+% be at a height H from water level and the model produced will describe
+% how y increases as the jumper falls towards the river.
+%% The report will answer the following questions:
+% # Implement a second order method to solve numerically
+% # Plot the jumper's position over time
+% # Does the model agree with 10 bounces across 60 seconds?
+% # What is the maximum speed and when does it occur?
+% # What is the maximum acceleration?
+% # Find how far the jumper travels within 60 seconds
+% # What delay should the camera at deck height be set to?
+% # What properties of the bungee rope could be changed to experience a 'Water Touch'?
+%%
+% The approach taken for these questions has been outlined in Section 1 and
+% will use the model described below.
+
+%% 3 The model
+%
+% The equation of motion for bungee jumping is
+%%
+% $$\frac{dv}{dt} = g - C|v|v - \max(0,K(y-L))$$
+%
+% Write a paragraph or two about the equation, including where it comes
+% from and what the symbols mean.
+
+%% 3.1 Assumptions and limitations
+%
+% Write a paragraph on the assumptions and limitations on the model,
+% and a paragraph on the limitations on the study you have conducted.
+
+%% 3.2 Parameters
+H = 74;             % Height of jump point (m)
+D = 31;             % Deck height (m)
+c = 0.9;            % Drag coefficient (kg/m)
+m = 80;             % Mass of the jumper (kg)
+L = 25;             % Length of bungee cord (m)
+k = 90;             % Spring constant of bungee cord (N/m)
+g = 9.8;            % Gravitational acceleration (m/s^2)
+C = c/m;            % Scaled drag coefficient
+K = k/m;            % Scaled spring constant
+
+%% 4 The numerical method
+%
+% The model itself, is too complicated to solve analytically. So, numerical
+% methods will be used to find solutions. Since the model involves two
+% (2) unknowns, v and y, a second equation is needed that relates the two
+% equations. This relationship is simply that the jumper's velocity (v) is
+% the derivative of the jumper's position (y). Hence, for numerical
+% purposes, we can think of this problem as two ODEs:
+%%
+% $$\frac{dy}{dt} = v$$
+%%
+% $$\frac{dv}{dt} = g - C|v|v - \max(0,K(y-L))$$
+
+
+%% 4.1 Parameters
+
+T = 60;             % Final time in simulation (s)
+n = 600;          % Number of subintervals (you decide how many you need)
+
+%% 4.2 Solution
+%
+% The ordinary differential equations are solved using Euler's Method.
+[t_euler, y_euler, v_euler, h_euler] = euler_bungee(T, n, g, C, K, L);
+%%
+% The Second Order Differential equations are solved using Modified Euler's
+% Method.
+f = @(t,y,v) g - C*abs(v).*v - max(0, K.*(y - L));
+[t_modeuler, y_modeuler, v_modeuler, h_modeuler] = modeuler_bungee(T, n, g, C, K, L, f);
+%%
+figure(1)
+plot(t_euler, y_euler);
+xlabel('Time (s)');
+ylabel('Distance fallen (m)');
+axis([0 60 0 60]);
+title("Figure 1: Euler's Method for Jump position");
+
+figure(2)
+plot(t_modeuler, y_modeuler);
+xlabel('Time (s)');
+ylabel('Distance fallen (m)');
+axis([0 60 0 60]);
+title("Figure 2: Modified Euler's Method for Jump position");
+
+%% 5 Analysis
+%
+
+
+%% 5.1 Timing and bounces
+%
+% Looking at Figure 2 we can see that across a period of 60 seconds there 
+% are 10 bounces. Thus agreeing with the proposed goal of the experience.
+
+%% 5.2 Maximum speed experienced by the jumper
+%
+% The "thrill factor" of bungee jumping is atleast partly determined by the
+% maximum velocity experienced by the jumper. What is the maximum speed and
+% when does it occur?
+
+figure(3)
+plot(t_modeuler,v_modeuler)
+title('Figure 3: Velocity of modeuler function for jump')
+xlabel('Time (s)')
+ylabel('Jumper Velocity (m/s)')
+
+% The greatest velocity is 19.99m/s at 2.6 seconds into the jump. In
+% relation to the jump, this velocity occurs during the initial jump when 
+% the bungie cord reaches its maximum length but hasn't started stretching
+% and slowing down the jumper.
+
+%% 5.3 Maximum acceleration experienced by the jumper
+%
+% Another factor important for thrill-seekers is the maximum acceleration
+% experienced. Greater acceleration means bigger thrills but too much might
+% kill the customer. Show through mathematical methods what the jumpers
+% maximum acceleration is and when it occurs in relation to the whole jump.
+
+a_modeuler = TTA(v_modeuler, t_modeuler, 601);
+t_modeuler2 = t_modeuler;
+t_modeuler2(:, 1) = [];
+figure(4)
+plot(t_modeuler2,a_modeuler)
+title('Figure 4: Acceleration of modeuler function for jump')
+xlabel('Time (s)')
+ylabel('Jumper Acceleration (m/s^2)')
+
+% The highest absolute acceleration is 18.29 at 4.3s. This is when the
+% jumper is coming up from the first bounce in relation to the overall jump.
+% The claim of up to 2g is supported by the model since the absolute
+% acceleration goes to 18.29 which is approximately 1.87g which falls within
+% the claim while also being close enough to 2g for customers to get a
+% thrill.
+
+%% 5.4 Distance travelled by the jumper
+%
+% To compute the distance travelled by the jumper we must find the integral
+% $$\int\limits_{0}^{60}|v|\mathrm{d}t$
+
+%% 5.5 Automated camera system
+%
+% Describe the question, and then answer it.  In this case, you will
+% fit an interpolating polynomial through the four points in your solution
+% $y$ that lie either side of the camera location.  Then use that
+% polynomial to solve for when the jumper passes the camera.
+
+%% 5.6 Water touch option
+%
+% Describe the question, and then answer it.  In this case, you will
+% re-solve the equations with different parameters for $L$ and $k$.  
+% Experiment to find which values work best for the water touch option, but 
+% include only the best combination that you found in the submitted code.
+
+%% 6 Conclusion
+%
+% Conclude your report by summing up your findings and making any
+% recommendations.
+
+
+
+
+
+
+
+
+##### SOURCE END #####
+--></body></html>

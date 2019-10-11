@@ -1,0 +1,3 @@
+function volume = trapezoidal_integration(f)
+% Tak
+end
