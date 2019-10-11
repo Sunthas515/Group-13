@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>MXB103 Project Group XX:  BUNGEE!</title><meta name="generator" content="MATLAB 9.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-09-11"><meta name="DC.source" content="MXB103ProjectScriptTemplate.m"><style type="text/css">
+      --><title>MXB103 Project Group 13:  BUNGEE!</title><meta name="generator" content="MATLAB 9.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-10-12"><meta name="DC.source" content="MXB103ProjectScriptTemplate.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>MXB103 Project Group XX:  BUNGEE!</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">1  Introduction</a></li><li><a href="#2">2  The proposal</a></li><li><a href="#3">3 The model</a></li><li><a href="#5">3.1 Assumptions and limitations</a></li><li><a href="#6">3.2 Parameters</a></li><li><a href="#7">4 The numerical method</a></li><li><a href="#8">4.1 Parameters</a></li><li><a href="#9">4.2 Solution</a></li><li><a href="#10">5 Analysis</a></li><li><a href="#11">5.1 Timing and bounces</a></li><li><a href="#12">5.2 Maximum speed experienced by the jumper</a></li><li><a href="#13">5.3 Maximum acceleration experienced by the jumper</a></li><li><a href="#14">5.4 Distance travelled by the jumper</a></li><li><a href="#15">5.5 Automated camera system</a></li><li><a href="#16">5.6 Water touch option</a></li><li><a href="#17">6 Conclusion</a></li></ul></div><h2 id="1">1  Introduction</h2><p>As part of Brisbane's "New World City" transformation, the Brisbane City Council is investigating a proposal to allow bungee jumping off the Story Bridge. This report addresses several key questions about the proposal.</p><p>In Section 2 of this report, the proposal and the key questions relating to it are discussed in more detail.  In Section 3, the model ... In Section 4, etc.</p><h2 id="2">2  The proposal</h2><p>What is the proposal exactly? What questions have you been asked to answer? What's your approach to doing this? A few paragraphs should be enough. Finish with a sentence linking to the next section on the model.</p><h2 id="3">3 The model</h2><p>The equation of motion for bungee jumping is</p><p><img src="MXB103ProjectScriptTemplate_eq00661610586290158342.png" alt="$$\frac{dv}{dt} = g - C|v|v - \max(0,K(y-L))$$"></p><p>Write a paragraph or two about the equation, including where it comes from and what the symbols mean.</p><h2 id="5">3.1 Assumptions and limitations</h2><p>Write a paragraph on the assumptions and limitations on the model, and a paragraph on the limitations on the study you have conducted.</p><h2 id="6">3.2 Parameters</h2><pre class="codeinput">H = 74;             <span class="comment">% Height of jump point (m)</span>
+  </style></head><body><div class="content"><h1>MXB103 Project Group 13:  BUNGEE!</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">1  Introduction</a></li><li><a href="#2">2  The proposal</a></li><li><a href="#3">The report will answer the following questions:</a></li><li><a href="#5">3 The model</a></li><li><a href="#7">3.1 Assumptions and limitations</a></li><li><a href="#8">3.2 Parameters</a></li><li><a href="#9">4 The numerical method</a></li><li><a href="#12">4.1 Parameters</a></li><li><a href="#13">4.2 Solution</a></li><li><a href="#16">5 Analysis</a></li><li><a href="#17">5.1 Timing and bounces</a></li><li><a href="#18">5.2 Maximum speed experienced by the jumper</a></li><li><a href="#19">5.3 Maximum acceleration experienced by the jumper</a></li><li><a href="#20">5.4 Distance travelled by the jumper</a></li><li><a href="#21">5.5 Automated camera system</a></li><li><a href="#22">5.6 Water touch option</a></li><li><a href="#23">6 Conclusion</a></li></ul></div><h2 id="1">1  Introduction</h2><p>As part of Brisbane's "New World City" transformation, the Brisbane City Council is investigating a proposal to allow bungee jumping off the Story Bridge. This report addresses several key questions about the proposal.</p><p>In Section 2 of this report, the proposal and the key questions relating to it are discussed in more detail.  In Section 3, the model and its equation are discussed in greater detail including where values come as well as outlining assumptions, limitations and the values that shall be used in the model (values for a 80kg person). In Section 4, the model will be formulated and then solved using the numerical method for a second order function. And finally, in Section 5, this report will answer several questions regarding the specifics of the model and what will be expected during the jump.</p><h2 id="2">2  The proposal</h2><p>The proposal calls for a platform to be installed at the very top of the bridge, from which the bungee jumps will take place. This platform will be at a height H from water level and the model produced will describe how y increases as the jumper falls towards the river.</p><h2 id="3">The report will answer the following questions:</h2><div><ol><li>Implement a second order method to solve numerically</li><li>Plot the jumper's position over time</li><li>Does the model agree with 10 bounces across 60 seconds?</li><li>What is the maximum speed and when does it occur?</li><li>What is the maximum acceleration?</li><li>Find how far the jumper travels within 60 seconds</li><li>What delay should the camera at deck height be set to?</li><li>What properties of the bungee rope could be changed to experience a 'Water Touch'?</li></ol></div><p>The approach taken for these questions has been outlined in Section 1 and will use the model described below.</p><h2 id="5">3 The model</h2><p>The equation of motion for bungee jumping is</p><p><img src="MXB103ProjectScriptTemplate_eq00661610586290158342.png" alt="$$\frac{dv}{dt} = g - C|v|v - \max(0,K(y-L))$$"></p><p>Write a paragraph or two about the equation, including where it comes from and what the symbols mean.</p><h2 id="7">3.1 Assumptions and limitations</h2><p>Write a paragraph on the assumptions and limitations on the model, and a paragraph on the limitations on the study you have conducted.</p><h2 id="8">3.2 Parameters</h2><pre class="codeinput">H = 74;             <span class="comment">% Height of jump point (m)</span>
 D = 31;             <span class="comment">% Deck height (m)</span>
 c = 0.9;            <span class="comment">% Drag coefficient (kg/m)</span>
 m = 80;             <span class="comment">% Mass of the jumper (kg)</span>
@@ -75,19 +75,25 @@ k = 90;             <span class="comment">% Spring constant of bungee cord (N/m)
 g = 9.8;            <span class="comment">% Gravitational acceleration (m/s^2)</span>
 C = c/m;            <span class="comment">% Scaled drag coefficient</span>
 K = k/m;            <span class="comment">% Scaled spring constant</span>
-</pre><h2 id="7">4 The numerical method</h2><p>How do you formulate the model to solve numerically? (hint: you write it as two equations)</p><h2 id="8">4.1 Parameters</h2><pre class="codeinput">T = 60;             <span class="comment">% Final time in simulation (s)</span>
+</pre><h2 id="9">4 The numerical method</h2><p>The model itself, is too complicated to solve analytically. So, numerical methods will be used to find solutions. Since the model involves two (2) unknowns, v and y, a second equation is needed that relates the two equations. This relationship is simply that the jumper's velocity (v) is the derivative of the jumper's position (y). Hence, for numerical purposes, we can think of this problem as two ODEs:</p><p><img src="MXB103ProjectScriptTemplate_eq14634665888582546610.png" alt="$$\frac{dy}{dt} = v$$"></p><p><img src="MXB103ProjectScriptTemplate_eq00661610586290158342.png" alt="$$\frac{dv}{dt} = g - C|v|v - \max(0,K(y-L))$$"></p><h2 id="12">4.1 Parameters</h2><pre class="codeinput">T = 60;             <span class="comment">% Final time in simulation (s)</span>
 n = 10000;          <span class="comment">% Number of subintervals (you decide how many you need)</span>
-</pre><h2 id="9">4.2 Solution</h2><p>The ordinary differential equations are solved using [which method].</p><pre class="codeinput">[t, y, v, h] = euler_bungee(T, n, g, C, K, L);
-<span class="comment">% (you must change this to a second order or higher method)</span>
-
-figure
-plot(t, y);
+</pre><h2 id="13">4.2 Solution</h2><p>The ordinary differential equations are solved using Euler's Method.</p><pre class="codeinput">[t_e, y_e, v_e, h_e] = euler_bungee(T, n, g, C, K, L);
+</pre><p>The Second Order Differential equations are solved using Modified Euler's Method.</p><pre class="codeinput">f = @(t,y,v) g - C*abs(v).*v - max(0, K.*(y - L));
+[t_mode, y_mode, v_mode, h_mode] = modeuler_bungee(T, n, g, C, K, L, f);
+</pre><pre class="codeinput">figure(1)
+plot(t_e, y_e);
 xlabel(<span class="string">'time (s)'</span>);
 ylabel(<span class="string">'distance fallen (m)'</span>);
-title(<span class="string">'Figure 1: Something descriptive here.'</span>);
-</pre><img vspace="5" hspace="5" src="MXB103ProjectScriptTemplate_01.png" alt=""> <h2 id="10">5 Analysis</h2><p>In this section, the model predictions are analysed with respect to the key questions being asked about the proposal.</p><h2 id="11">5.1 Timing and bounces</h2><p>Describe the question, and then answer it.  In this case, you will refer to Figure 1 of <img src="MXB103ProjectScriptTemplate_eq08830444604280721118.png" alt="$y$"> versus <img src="MXB103ProjectScriptTemplate_eq12656067504604335951.png" alt="$t$">.</p><h2 id="12">5.2 Maximum speed experienced by the jumper</h2><p>Describe the question, and then answer it.  In this case, you will create a figure of <img src="MXB103ProjectScriptTemplate_eq03158747792916826732.png" alt="$v$"> versus <img src="MXB103ProjectScriptTemplate_eq12656067504604335951.png" alt="$t$"> and refer to it to answer the question.</p><h2 id="13">5.3 Maximum acceleration experienced by the jumper</h2><p>Describe the question, and then answer it.  In this case, you will call a function to numerically differentiate <img src="MXB103ProjectScriptTemplate_eq03158747792916826732.png" alt="$v$"> to find <img src="MXB103ProjectScriptTemplate_eq05508344529756732484.png" alt="$a$">.  Then plot <img src="MXB103ProjectScriptTemplate_eq05508344529756732484.png" alt="$a$"> versus <img src="MXB103ProjectScriptTemplate_eq12656067504604335951.png" alt="$t$"> and refer to it to answer the question.</p><h2 id="14">5.4 Distance travelled by the jumper</h2><p>Describe the question, and then answer it.  In this case, you will call a function to numerically integrate <img src="MXB103ProjectScriptTemplate_eq03205349225934293529.png" alt="$|v|$"> to find the distance.</p><h2 id="15">5.5 Automated camera system</h2><p>Describe the question, and then answer it.  In this case, you will fit an interpolating polynomial through the four points in your solution <img src="MXB103ProjectScriptTemplate_eq08830444604280721118.png" alt="$y$"> that lie either side of the camera location.  Then use that polynomial to solve for when the jumper passes the camera.</p><h2 id="16">5.6 Water touch option</h2><p>Describe the question, and then answer it.  In this case, you will re-solve the equations with different parameters for <img src="MXB103ProjectScriptTemplate_eq11904963258706611165.png" alt="$L$"> and <img src="MXB103ProjectScriptTemplate_eq15636846968047188835.png" alt="$k$">. Experiment to find which values work best for the water touch option, but include only the best combination that you found in the submitted code.</p><h2 id="17">6 Conclusion</h2><p>Conclude your report by summing up your findings and making any recommendations.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019a</a><br></p></div><!--
+title(<span class="string">"Figure 1: Euler's Method for Jump position"</span>);
+
+figure(2)
+plot(t_mode, y_mode);
+xlabel(<span class="string">'time (s)'</span>);
+ylabel(<span class="string">'distance fallen (m)'</span>);
+title(<span class="string">"Figure 2: Modified Euler's Method for Jump position"</span>);
+</pre><img vspace="5" hspace="5" src="MXB103ProjectScriptTemplate_01.png" alt=""> <img vspace="5" hspace="5" src="MXB103ProjectScriptTemplate_02.png" alt=""> <h2 id="16">5 Analysis</h2><p>In this section, the model predictions are analysed with respect to the key questions being asked about the proposal.</p><h2 id="17">5.1 Timing and bounces</h2><p>Describe the question, and then answer it.  In this case, you will refer to Figure 1 of <img src="MXB103ProjectScriptTemplate_eq08830444604280721118.png" alt="$y$"> versus <img src="MXB103ProjectScriptTemplate_eq12656067504604335951.png" alt="$t$">.</p><h2 id="18">5.2 Maximum speed experienced by the jumper</h2><p>Describe the question, and then answer it.  In this case, you will create a figure of <img src="MXB103ProjectScriptTemplate_eq03158747792916826732.png" alt="$v$"> versus <img src="MXB103ProjectScriptTemplate_eq12656067504604335951.png" alt="$t$"> and refer to it to answer the question.</p><h2 id="19">5.3 Maximum acceleration experienced by the jumper</h2><p>Describe the question, and then answer it.  In this case, you will call a function to numerically differentiate <img src="MXB103ProjectScriptTemplate_eq03158747792916826732.png" alt="$v$"> to find <img src="MXB103ProjectScriptTemplate_eq05508344529756732484.png" alt="$a$">.  Then plot <img src="MXB103ProjectScriptTemplate_eq05508344529756732484.png" alt="$a$"> versus <img src="MXB103ProjectScriptTemplate_eq12656067504604335951.png" alt="$t$"> and refer to it to answer the question.</p><h2 id="20">5.4 Distance travelled by the jumper</h2><p>Describe the question, and then answer it.  In this case, you will call a function to numerically integrate <img src="MXB103ProjectScriptTemplate_eq03205349225934293529.png" alt="$|v|$"> to find the distance.</p><h2 id="21">5.5 Automated camera system</h2><p>Describe the question, and then answer it.  In this case, you will fit an interpolating polynomial through the four points in your solution <img src="MXB103ProjectScriptTemplate_eq08830444604280721118.png" alt="$y$"> that lie either side of the camera location.  Then use that polynomial to solve for when the jumper passes the camera.</p><h2 id="22">5.6 Water touch option</h2><p>Describe the question, and then answer it.  In this case, you will re-solve the equations with different parameters for <img src="MXB103ProjectScriptTemplate_eq11904963258706611165.png" alt="$L$"> and <img src="MXB103ProjectScriptTemplate_eq15636846968047188835.png" alt="$k$">. Experiment to find which values work best for the water touch option, but include only the best combination that you found in the submitted code.</p><h2 id="23">6 Conclusion</h2><p>Conclude your report by summing up your findings and making any recommendations.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2018b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
-%% MXB103 Project Group XX:  BUNGEE!
+%% MXB103 Project Group 13:  BUNGEE!
 
 %% 1  Introduction
 % As part of Brisbane's "New World City" transformation, the Brisbane City
@@ -96,15 +102,32 @@ title(<span class="string">'Figure 1: Something descriptive here.'</span>);
 % proposal.
 %
 % In Section 2 of this report, the proposal and the key questions relating 
-% to it are discussed in more detail.  In Section 3, the model ...
-% In Section 4, etc.
+% to it are discussed in more detail.  In Section 3, the model and its
+% equation are discussed in greater detail including where values come 
+% as well as outlining assumptions, limitations and the values that shall
+% be used in the model (values for a 80kg person). In Section 4, the
+% model will be formulated and then solved using the numerical method for a
+% second order function. And finally, in Section 5, this report will answer
+% several questions regarding the specifics of the model and what will be
+% expected during the jump.
 
 %% 2  The proposal
-% What is the proposal exactly?
-% What questions have you been asked to answer?
-% What's your approach to doing this?
-% A few paragraphs should be enough.
-% Finish with a sentence linking to the next section on the model.
+% The proposal calls for a platform to be installed at the very top of the
+% bridge, from which the bungee jumps will take place. This platform will
+% be at a height H from water level and the model produced will describe
+% how y increases as the jumper falls towards the river.
+%% The report will answer the following questions:
+% # Implement a second order method to solve numerically
+% # Plot the jumper's position over time
+% # Does the model agree with 10 bounces across 60 seconds?
+% # What is the maximum speed and when does it occur?
+% # What is the maximum acceleration?
+% # Find how far the jumper travels within 60 seconds
+% # What delay should the camera at deck height be set to?
+% # What properties of the bungee rope could be changed to experience a 'Water Touch'?
+%%
+% The approach taken for these questions has been outlined in Section 1 and
+% will use the model described below.
 
 %% 3 The model
 %
@@ -133,8 +156,17 @@ K = k/m;            % Scaled spring constant
 
 %% 4 The numerical method
 %
-% How do you formulate the model to solve numerically? (hint: you write it
-% as two equations)
+% The model itself, is too complicated to solve analytically. So, numerical
+% methods will be used to find solutions. Since the model involves two
+% (2) unknowns, v and y, a second equation is needed that relates the two
+% equations. This relationship is simply that the jumper's velocity (v) is
+% the derivative of the jumper's position (y). Hence, for numerical
+% purposes, we can think of this problem as two ODEs:
+%%
+% $$\frac{dy}{dt} = v$$
+%%
+% $$\frac{dv}{dt} = g - C|v|v - \max(0,K(y-L))$$
+
 
 %% 4.1 Parameters
 
@@ -143,15 +175,26 @@ n = 10000;          % Number of subintervals (you decide how many you need)
 
 %% 4.2 Solution
 %
-% The ordinary differential equations are solved using [which method].
-[t, y, v, h] = euler_bungee(T, n, g, C, K, L);
-% (you must change this to a second order or higher method)
+% The ordinary differential equations are solved using Euler's Method.
+[t_e, y_e, v_e, h_e] = euler_bungee(T, n, g, C, K, L);
+%%
+% The Second Order Differential equations are solved using Modified Euler's
+% Method.
+f = @(t,y,v) g - C*abs(v).*v - max(0, K.*(y - L));
+[t_mode, y_mode, v_mode, h_mode] = modeuler_bungee(T, n, g, C, K, L, f);
+%%
 
-figure
-plot(t, y);
+figure(1)
+plot(t_e, y_e);
 xlabel('time (s)');
 ylabel('distance fallen (m)');
-title('Figure 1: Something descriptive here.');
+title("Figure 1: Euler's Method for Jump position");
+
+figure(2)
+plot(t_mode, y_mode);
+xlabel('time (s)');
+ylabel('distance fallen (m)');
+title("Figure 2: Modified Euler's Method for Jump position");
 
 %% 5 Analysis
 %
