@@ -76,86 +76,59 @@ K = k/m;            % Scaled spring constant
 %% 4.1 Parameters
 
 T = 60;             % Final time in simulation (s)
-n = 600;          % Number of subintervals (you decide how many you need)
+n = 10000;          % Number of subintervals (you decide how many you need)
 
 %% 4.2 Solution
 %
 % The ordinary differential equations are solved using Euler's Method.
-[t_euler, y_euler, v_euler, h_euler] = euler_bungee(T, n, g, C, K, L);
+[t_e, y_e, v_e, h_e] = euler_bungee(T, n, g, C, K, L);
 %%
 % The Second Order Differential equations are solved using Modified Euler's
 % Method.
 f = @(t,y,v) g - C*abs(v).*v - max(0, K.*(y - L));
-[t_modeuler, y_modeuler, v_modeuler, h_modeuler] = modeuler_bungee(T, n, g, C, K, L, f);
+[t_mode, y_mode, v_mode, h_mode] = modeuler_bungee(T, n, g, C, K, L, f);
 %%
+
 figure(1)
-plot(t_euler, y_euler);
-xlabel('Time (s)');
-ylabel('Distance fallen (m)');
-axis([0 60 0 60]);
+plot(t_e, y_e);
+xlabel('time (s)');
+ylabel('distance fallen (m)');
 title("Figure 1: Euler's Method for Jump position");
 
 figure(2)
-plot(t_modeuler, y_modeuler);
-xlabel('Time (s)');
-ylabel('Distance fallen (m)');
-axis([0 60 0 60]);
+plot(t_mode, y_mode);
+xlabel('time (s)');
+ylabel('distance fallen (m)');
 title("Figure 2: Modified Euler's Method for Jump position");
 
 %% 5 Analysis
 %
-
+% In this section, the model predictions are analysed with respect to the
+% key questions being asked about the proposal.
+%
 
 %% 5.1 Timing and bounces
 %
-% Looking at Figure 2 we can see that across a period of 60 seconds there 
-% are 10 bounces. Thus agreeing with the proposed goal of the experience.
+% Describe the question, and then answer it.  In this case, you will refer
+% to Figure 1 of $y$ versus $t$.
+% 
 
 %% 5.2 Maximum speed experienced by the jumper
 %
-% The "thrill factor" of bungee jumping is atleast partly determined by the
-% maximum velocity experienced by the jumper. What is the maximum speed and
-% when does it occur?
-
-figure(3)
-plot(t_modeuler,v_modeuler)
-title('Figure 3: Velocity of modeuler function for jump')
-xlabel('Time (s)')
-ylabel('Jumper Velocity (m/s)')
-
-% The greatest velocity is 19.99m/s at 2.6 seconds into the jump. In
-% relation to the jump, this velocity occurs during the initial jump when 
-% the bungie cord reaches its maximum length but hasn't started stretching
-% and slowing down the jumper.
+% Describe the question, and then answer it.  In this case, you will create
+% a figure of $v$ versus $t$ and refer to it to answer the question.
+% 
 
 %% 5.3 Maximum acceleration experienced by the jumper
 %
-% Another factor important for thrill-seekers is the maximum acceleration
-% experienced. Greater acceleration means bigger thrills but too much might
-% kill the customer. Show through mathematical methods what the jumpers
-% maximum acceleration is and when it occurs in relation to the whole jump.
-
-a_modeuler = TTA(v_modeuler, t_modeuler, 601);
-t_modeuler2 = t_modeuler;
-t_modeuler2(:, 1) = [];
-figure(4)
-plot(t_modeuler2,a_modeuler)
-title('Figure 4: Acceleration of modeuler function for jump')
-xlabel('Time (s)')
-ylabel('Jumper Acceleration (m/s^2)')
-
-% The highest absolute acceleration is 18.29 at 4.3s. This is when the
-% jumper is coming up from the first bounce in relation to the overall jump.
-% The claim of up to 2g is supported by the model since the absolute
-% acceleration goes to 18.29 which is approximately 1.87g which falls within
-% the claim while also being close enough to 2g for customers to get a
-% thrill.
+% Describe the question, and then answer it.  In this case, you will call
+% a function to numerically differentiate $v$ to find $a$.  Then plot $a$ 
+% versus $t$ and refer to it to answer the question.
 
 %% 5.4 Distance travelled by the jumper
 %
-% To compute the distance travelled by the jumper we must find the integral
-% $$\int\limits_{0}^{60}|v|\mathrm{d}t$.
-
+% Describe the question, and then answer it.  In this case, you will call
+% a function to numerically integrate $|v|$ to find the distance.
 
 %% 5.5 Automated camera system
 %
@@ -175,10 +148,3 @@ ylabel('Jumper Acceleration (m/s^2)')
 %
 % Conclude your report by summing up your findings and making any
 % recommendations.
-
-
-
-
-
-
-
