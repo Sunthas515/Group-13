@@ -75,7 +75,7 @@ K = k/m;            % Scaled spring constant
 
 %% 4.1 Parameters
 
-T = 60;             % Final time in simulation (s)
+T = 60;           % Final time in simulation (s)
 n = 600;          % Number of subintervals (you decide how many you need)
 
 %% 4.2 Solution
@@ -161,7 +161,8 @@ ylabel('Jumper Acceleration (m/s^2)')
 % where
 % $$h = \frac{60-0}{n}$$
 v_abs = abs(v_modeuler);
-v_dist = trapezoidal_integration(v_abs,60);
+h = T/n;
+distance_travelled = trapezoidal_integration(v_abs,h);
 
 %% 5.5 Automated camera system
 %
@@ -181,7 +182,6 @@ v_dist = trapezoidal_integration(v_abs,60);
 %
 % Conclude your report by summing up your findings and making any
 % recommendations.
-
 
 
 
