@@ -92,12 +92,14 @@ figure(1)
 plot(t_euler, y_euler);
 xlabel('Time (s)');
 ylabel('Distance fallen (m)');
+axis([0 60 0 60]);
 title("Figure 1: Euler's Method for Jump position");
 
 figure(2)
 plot(t_modeuler, y_modeuler);
 xlabel('Time (s)');
 ylabel('Distance fallen (m)');
+axis([0 60 0 60]);
 title("Figure 2: Modified Euler's Method for Jump position");
 
 %% 5 Analysis
@@ -119,7 +121,7 @@ figure(3)
 plot(t_modeuler,v_modeuler)
 title('Figure 3: Velocity of modeuler function for jump')
 xlabel('Time (s)')
-ylabel('Velocity of jumper during jump (m/s)')
+ylabel('Jumper Velocity (m/s)')
 
 % The greatest velocity is 19.99m/s at 2.6 seconds into the jump. In
 % relation to the jump, this velocity occurs during the initial jump when 
@@ -138,9 +140,9 @@ t_modeuler2 = t_modeuler;
 t_modeuler2(:, 1) = [];
 figure(4)
 plot(t_modeuler2,a_modeuler)
-title('Acceleration of modeuler function for jump')
-xlabel('Time (t)')
-ylabel('Acceleration of jumper during jump (ms^-2)')
+title('Figure 4: Acceleration of modeuler function for jump')
+xlabel('Time (s)')
+ylabel('Jumper Acceleration (m/s^2)')
 
 % The highest absolute acceleration is 18.29 at 4.3s. This is when the
 % jumper is coming up from the first bounce in relation to the overall jump.
@@ -151,8 +153,14 @@ ylabel('Acceleration of jumper during jump (ms^-2)')
 
 %% 5.4 Distance travelled by the jumper
 %
-% Describe the question, and then answer it.  In this case, you will call
-% a function to numerically integrate $|v|$ to find the distance.
+% To compute the distance travelled by the jumper we must find the
+% integral. We will use the trapezoidal method to find the definite integral.
+%%
+% $$\int\limits_{0}^{60}|v|\mathrm{d}t \approx \frac{h}{2}[v(0) +
+% \sum_{i=1}^{n-1}v(i) + |v(n)]$$
+% where
+% $$h = \frac{60-0}{n}$$
+
 
 %% 5.5 Automated camera system
 %
