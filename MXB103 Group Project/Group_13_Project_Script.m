@@ -153,9 +153,15 @@ ylabel('Jumper Acceleration (m/s^2)')
 
 %% 5.4 Distance travelled by the jumper
 %
-% To compute the distance travelled by the jumper we must find the integral
-% $$\int\limits_{0}^{60}|v|\mathrm{d}t$.
-
+% To compute the distance travelled by the jumper we must find the
+% integral. We will use the trapezoidal method to find the definite integral.
+%%
+% $$\int\limits_{0}^{60}|v|\mathrm{d}t \approx \frac{h}{2}[|v|(0) +
+% \sum_{i=1}^{n-1}|v|(i) + |v|(n)]$$
+% where
+% $$h = \frac{60-0}{n}$$
+v_abs = abs(v_modeuler);
+v_dist = trapezoidal_integration(v_abs,60);
 
 %% 5.5 Automated camera system
 %
