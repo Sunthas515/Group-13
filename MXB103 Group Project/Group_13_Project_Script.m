@@ -123,6 +123,7 @@ title('Figure 3: Velocity of modeuler function for jump')
 xlabel('Time (s)')
 ylabel('Jumper Velocity (m/s)')
 
+%%
 % The greatest velocity is 19.99m/s at 2.6 seconds into the jump. In
 % relation to the jump, this velocity occurs during the initial jump when 
 % the bungie cord reaches its maximum length but hasn't started stretching
@@ -144,6 +145,7 @@ title('Figure 4: Acceleration of modeuler function for jump')
 xlabel('Time (s)')
 ylabel('Jumper Acceleration (m/s^2)')
 
+%%
 % The highest absolute acceleration is 18.29 at 4.3s. This is when the
 % jumper is coming up from the first bounce in relation to the overall jump.
 % The claim of up to 2g is supported by the model since the absolute
@@ -161,8 +163,10 @@ ylabel('Jumper Acceleration (m/s^2)')
 % where
 % $$h = \frac{60-0}{n}$$
 v_abs = abs(v_modeuler);
-h = T/n;
-distance_travelled = trapezoidal_integration(v_abs,h);
+v_dist = trapezoidal_integration(v_abs,T/n)
+%%
+% The distance presented above is the total distance travelled between
+% time=0s and time=60s for the jumper.
 
 %% 5.5 Automated camera system
 %
@@ -170,6 +174,41 @@ distance_travelled = trapezoidal_integration(v_abs,h);
 % fit an interpolating polynomial through the four points in your solution
 % $y$ that lie either side of the camera location.  Then use that
 % polynomial to solve for when the jumper passes the camera.
+int_deck = 43;
+int_i = first_in_tol(y_modeuler, int_deck, 1);
+int_array = zeros(4,1);
+% Check if index is above or below desired value and create set of values
+% accordingly
+if y_modeuler(int_i) >= int_deck
+    int_array(1) = y_modeuler(int_i-2);
+    int_array(2) = y_modeuler(int_i-1);
+    int_array(3) = y_modeuler(int_i);
+    int_array(4) = y_modeuler(int_i+1);
+    int_X = t_modeuler(int_i-2):t_modeuler(2):t_modeuler(int_i+1);
+else
+    int_array(1) = y_modeuler(int_i-1);
+    int_array(2) = y_modeuler(int_i);
+    int_array(3) = y_modeuler(int_i+1);
+    int_array(4) = y_modeuler(int_i+2);
+    int_X = t_modeuler(int_i-1):t_modeuler(2):t_modeuler(int_i+2);
+end
+int_diff = forward_differences(int_array);
+
+int_tol = 0.000001;
+int_rootfind = NaN;
+while isnan(int_rootfind) && int_tol < 1
+    int_x = int_X(1):int_tol:int_X(end);
+    int_eval = forward_eval(int_X,int_diff,int_x);
+    figure(5);
+    plot(int_X,int_array,"r*");
+    hold on;
+    plot(int_x,int_eval);
+    title("Figure 5: Generating interpolating polynomial around y=43");
+    int_rootfind = first_in_tol(int_eval, int_deck, 0.00001);
+    int_tol = int_tol*10;
+end
+int_x(int_rootfind)
+int_eval(int_rootfind)
 
 %% 5.6 Water touch option
 %
