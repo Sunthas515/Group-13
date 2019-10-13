@@ -75,7 +75,7 @@ k = 90;             <span class="comment">% Spring constant of bungee cord (N/m)
 g = 9.8;            <span class="comment">% Gravitational acceleration (m/s^2)</span>
 C = c/m;            <span class="comment">% Scaled drag coefficient</span>
 K = k/m;            <span class="comment">% Scaled spring constant</span>
-</pre><h2 id="9">4 The numerical method</h2><p>The model itself, is too complicated to solve analytically. So, numerical methods will be used to find solutions. Since the model involves two (2) unknowns, v and y, a second equation is needed that relates the two equations. This relationship is simply that the jumper's velocity (v) is the derivative of the jumper's position (y). Hence, for numerical purposes, we can think of this problem as two ODEs:</p><p><img src="Group_13_Project_Script_eq14634665888582546610.png" alt="$$\frac{dy}{dt} = v$$"></p><p><img src="Group_13_Project_Script_eq00661610586290158342.png" alt="$$\frac{dv}{dt} = g - C|v|v - \max(0,K(y-L))$$"></p><h2 id="12">4.1 Parameters</h2><pre class="codeinput">T = 60;             <span class="comment">% Final time in simulation (s)</span>
+</pre><h2 id="9">4 The numerical method</h2><p>The model itself, is too complicated to solve analytically. So, numerical methods will be used to find solutions. Since the model involves two (2) unknowns, v and y, a second equation is needed that relates the two equations. This relationship is simply that the jumper's velocity (v) is the derivative of the jumper's position (y). Hence, for numerical purposes, we can think of this problem as two ODEs:</p><p><img src="Group_13_Project_Script_eq14634665888582546610.png" alt="$$\frac{dy}{dt} = v$$"></p><p><img src="Group_13_Project_Script_eq00661610586290158342.png" alt="$$\frac{dv}{dt} = g - C|v|v - \max(0,K(y-L))$$"></p><h2 id="12">4.1 Parameters</h2><pre class="codeinput">T = 60;           <span class="comment">% Final time in simulation (s)</span>
 n = 600;          <span class="comment">% Number of subintervals (you decide how many you need)</span>
 </pre><h2 id="13">4.2 Solution</h2><p>The ordinary differential equations are solved using Euler's Method.</p><pre class="codeinput">[t_euler, y_euler, v_euler, h_euler] = euler_bungee(T, n, g, C, K, L);
 </pre><p>The Second Order Differential equations are solved using Modified Euler's Method.</p><pre class="codeinput">f = @(t,y,v) g - C*abs(v).*v - max(0, K.*(y - L));
@@ -111,7 +111,7 @@ v_dist = trapezoidal_integration(v_abs,T/n)
 </pre><pre class="codeoutput">
 v_dist =
 
-  280.2173
+  280.4992
 
 </pre><p>The distance presented above is the total distance travelled between time=0s and time=60s for the jumper.</p><h2 id="25">5.5 Automated camera system</h2><p>Describe the question, and then answer it.  In this case, you will fit an interpolating polynomial through the four points in your solution <img src="Group_13_Project_Script_eq08830444604280721118.png" alt="$y$"> that lie either side of the camera location.  Then use that polynomial to solve for when the jumper passes the camera.</p><pre class="codeinput">int_deck = 43;
 int_i = first_in_tol(y_modeuler, int_deck, 1);
@@ -139,6 +139,7 @@ plot(int_X,int_array,<span class="string">"r*"</span>);
 hold <span class="string">on</span>;
 plot(int_x,int_eval);
 title(<span class="string">"Figure 5: Generating interpolating polynomial around y=43"</span>);
+int_time = t_modeuler(first_in_tol(int_eval,int_deck,10^-2));
 </pre><img vspace="5" hspace="5" src="Group_13_Project_Script_05.png" alt=""> <h2 id="26">5.6 Water touch option</h2><p>Describe the question, and then answer it.  In this case, you will re-solve the equations with different parameters for <img src="Group_13_Project_Script_eq11904963258706611165.png" alt="$L$"> and <img src="Group_13_Project_Script_eq15636846968047188835.png" alt="$k$">. Experiment to find which values work best for the water touch option, but include only the best combination that you found in the submitted code.</p><h2 id="27">6 Conclusion</h2><p>Conclude your report by summing up your findings and making any recommendations.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2018b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% MXB103 Project Group 13:  BUNGEE!
@@ -218,7 +219,7 @@ K = k/m;            % Scaled spring constant
 
 %% 4.1 Parameters
 
-T = 60;             % Final time in simulation (s)
+T = 60;           % Final time in simulation (s)
 n = 600;          % Number of subintervals (you decide how many you need)
 
 %% 4.2 Solution
@@ -343,6 +344,7 @@ plot(int_X,int_array,"r*");
 hold on;
 plot(int_x,int_eval);
 title("Figure 5: Generating interpolating polynomial around y=43");
+int_time = t_modeuler(first_in_tol(int_eval,int_deck,10^-2));
 
 %% 5.6 Water touch option
 %
@@ -355,7 +357,6 @@ title("Figure 5: Generating interpolating polynomial around y=43");
 %
 % Conclude your report by summing up your findings and making any
 % recommendations.
-
 
 
 

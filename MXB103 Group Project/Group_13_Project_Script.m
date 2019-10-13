@@ -192,14 +192,23 @@ else
     int_array(4) = y_modeuler(int_i+2);
     int_X = t_modeuler(int_i-1):t_modeuler(2):t_modeuler(int_i+2);
 end
-int_x = int_X(1):0.001:int_X(end);
 int_diff = forward_differences(int_array);
-int_eval = forward_eval(int_X,int_diff,int_x);
-figure(5);
-plot(int_X,int_array,"r*");
-hold on;
-plot(int_x,int_eval);
-title("Figure 5: Generating interpolating polynomial around y=43");
+
+int_tol = 0.000001;
+int_rootfind = NaN;
+while isnan(int_rootfind) && int_tol < 1
+    int_x = int_X(1):int_tol:int_X(end);
+    int_eval = forward_eval(int_X,int_diff,int_x);
+    figure(5);
+    plot(int_X,int_array,"r*");
+    hold on;
+    plot(int_x,int_eval);
+    title("Figure 5: Generating interpolating polynomial around y=43");
+    int_rootfind = first_in_tol(int_eval, int_deck, 0.00001);
+    int_tol = int_tol*10;
+end
+int_x(int_rootfind)
+int_eval(int_rootfind)
 
 %% 5.6 Water touch option
 %
