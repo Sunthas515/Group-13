@@ -1,4 +1,4 @@
-function integration = trapezoidal_integration(f, n)
+function integration = trapezoidal_integration(f, h)
 % Takes in a function and returns the integral of it given that
 % f = f(x)
 % n = number of subintervals (in this case seconds)
@@ -13,6 +13,5 @@ for i=2:length(f)-1
 end
 
 % Calculate final definite integral
-h = (f(end) - f(1))/n;
 integration = h/2 * (f(1) + 2*sum + f(end));
 end
