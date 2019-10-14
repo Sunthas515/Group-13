@@ -40,13 +40,57 @@
 %%
 % $$\frac{dv}{dt} = g - C|v|v - \max(0,K(y-L))$$
 %
-% Write a paragraph or two about the equation, including where it comes
-% from and what the symbols mean.
+% This equation is derived by considering the forces acting on the jumper
+% at all times. These three forces are: 1. Gravity, 2. Drag (also called 
+% air resistance); the frictional force due to air and 3. Tension: the pull
+% of the bungee rope when it is taut
+%%
+% The simplest force to model is gravity: it always acts downwards, and
+% its value is given by $$mg$, where $$m$ is the mass of the jumper, and
+% $$g$ is the gravitational acceleration.
+%%
+% The next force we consider is drag. This force always acts in the
+% opposite direction to motion and is always slowing the jumper. Its value
+% is given by $$-c|v|v$, where $$c$ is the drag coefficient, and $$v$ is the
+% velocity of the jumper. The absolute value sign of the first factor of
+% $$v$ ensures it always acts in the opposite direction to motion.
+%%
+% The final force we must consider is tension. When the bungee rope is taut,
+% it exerts a force on teh jumper proportional to how much it has been
+% stretched (this is called _Hookke's Law_). This force always acts
+% upwards, pulling the jumper back up. If we let the length of the
+% unstretched rope be $$L$, then the tension when the rope is taut is given
+% by $$k(y - L)$, where $$k$ is the elasticity of the bungee rope. In order
+% to ensure that the tension is only measured when the rope is taut (when
+% $$y > L$), we write the function as $$-max(0, k(y-L))$.
+%%
+% Hence, the equation is $$m\frac{dv}{dt} = mg - C|v|v - \max(0,K(y-L))$
+%%
+% And can be simplified to: $$\frac{dv}{dt} = g - C|v|v - \max(0,K(y-L))$
 
-%% 3.1 Assumptions and limitations
-%
-% Write a paragraph on the assumptions and limitations on the model,
-% and a paragraph on the limitations on the study you have conducted.
+%% 3.1 Assumptions and limitations of the model
+% The model provided has several limitations that must be addressed. The
+% model assumes optimal conditions for the jump, i.e. no wind and a tide
+% which is at distance H from the jump platform. These factors may effect
+% the jump in several ways which may include creating unsafe jump 
+% conditions. Large winds or high tides may mean that a jumper will reach 
+% the water level before the rope has enough time to fully decelerate the 
+% jumper. If the jumper reaches the water level at a faster speed than
+% recommended they may sustain injury.
+%%
+% In addition to this, the conducted study also made several assumptions.
+% The study was conducted on one case for an 80kg person and rope length of
+% 25m. This study did not take into account persons of differing body
+% weight from the specified 80kg, which may significantly affect the
+% outcome of the jump, i.e. a person that is significantly lighter will
+% have a much smaller jump fall distance compared with a person who is
+% significantly heavier. Along similar vain, the body shape of the
+% individual may have an impact on the drag experienced, as individuals
+% with a larger surface area will create more drag than those with smaller
+% surface area. Finally, the study also assumed a constant length and
+% "spring constant" for the rope, this is not necessarily the most accurate
+% solution as over time, the length of the rope $$L% will increase and as
+% $$L$ increases, the "spring constant" $$k$ will decrease proportionally.
 
 %% 3.2 Parameters
 H = 74;             % Height of jump point (m)
