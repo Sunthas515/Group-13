@@ -199,14 +199,14 @@ int_rootfind = NaN;
 while isnan(int_rootfind) && int_tol < 1
     int_x = int_X(1):int_tol:int_X(end);
     int_eval = forward_eval(int_X,int_diff,int_x);
-    figure(5);
-    plot(int_X,int_array,"r*");
-    hold on;
-    plot(int_x,int_eval);
-    title("Figure 5: Generating interpolating polynomial around y=43");
     int_rootfind = first_in_tol(int_eval, int_deck, 0.00001);
     int_tol = int_tol*10;
 end
+figure(5);
+plot(int_X,int_array,"r*");
+hold on;
+plot(int_x,int_eval);
+title("Figure 5: Generating interpolating polynomial around y=43");
 int_x(int_rootfind)
 int_eval(int_rootfind)
 
