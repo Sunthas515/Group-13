@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>MXB103 Project Group 13:  BUNGEE!</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">1  Introduction</a></li><li><a href="#2">2  The proposal</a></li><li><a href="#3">The report will answer the following questions:</a></li><li><a href="#5">3 The model</a></li><li><a href="#7">3.1 Assumptions and limitations</a></li><li><a href="#8">3.2 Parameters</a></li><li><a href="#9">4 The numerical method</a></li><li><a href="#12">4.1 Parameters</a></li><li><a href="#13">4.2 Solution</a></li><li><a href="#16">5 Analysis</a></li><li><a href="#17">5.1 Timing and bounces</a></li><li><a href="#18">5.2 Maximum speed experienced by the jumper</a></li><li><a href="#20">5.3 Maximum acceleration experienced by the jumper</a></li><li><a href="#22">5.4 Distance travelled by the jumper</a></li><li><a href="#25">5.5 Automated camera system</a></li><li><a href="#26">5.6 Water touch option</a></li><li><a href="#27">6 Conclusion</a></li></ul></div><h2 id="1">1  Introduction</h2><p>As part of Brisbane's "New World City" transformation, the Brisbane City Council is investigating a proposal to allow bungee jumping off the Story Bridge. This report addresses several key questions about the proposal.</p><p>In Section 2 of this report, the proposal and the key questions relating to it are discussed in more detail.  In Section 3, the model and its equation are discussed in greater detail including where values come as well as outlining assumptions, limitations and the values that shall be used in the model (values for a 80kg person). In Section 4, the model will be formulated and then solved using the numerical method for a second order function. And finally, in Section 5, this report will answer several questions regarding the specifics of the model and what will be expected during the jump.</p><h2 id="2">2  The proposal</h2><p>The proposal calls for a platform to be installed at the very top of the bridge, from which the bungee jumps will take place. This platform will be at a height H from water level and the model produced will describe how y increases as the jumper falls towards the river.</p><h2 id="3">The report will answer the following questions:</h2><div><ol><li>Implement a second order method to solve numerically</li><li>Plot the jumper's position over time</li><li>Does the model agree with 10 bounces across 60 seconds?</li><li>What is the maximum speed and when does it occur?</li><li>What is the maximum acceleration?</li><li>Find how far the jumper travels within 60 seconds</li><li>What delay should the camera at deck height be set to?</li><li>What properties of the bungee rope could be changed to experience a 'Water Touch'?</li></ol></div><p>The approach taken for these questions has been outlined in Section 1 and will use the model described below.</p><h2 id="5">3 The model</h2><p>The equation of motion for bungee jumping is</p><p><img src="Group_13_Project_Script_eq00661610586290158342.png" alt="$$\frac{dv}{dt} = g - C|v|v - \max(0,K(y-L))$$"></p><p>Write a paragraph or two about the equation, including where it comes from and what the symbols mean.</p><h2 id="7">3.1 Assumptions and limitations</h2><p>Write a paragraph on the assumptions and limitations on the model, and a paragraph on the limitations on the study you have conducted.</p><h2 id="8">3.2 Parameters</h2><pre class="codeinput">H = 74;             <span class="comment">% Height of jump point (m)</span>
+  </style></head><body><div class="content"><h1>MXB103 Project Group 13:  BUNGEE!</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">1  Introduction</a></li><li><a href="#2">2  The proposal</a></li><li><a href="#3">The report will answer the following questions:</a></li><li><a href="#5">3 The model</a></li><li><a href="#12">3.1 Assumptions and limitations of the model</a></li><li><a href="#14">3.2 Parameters</a></li><li><a href="#15">4 The numerical method</a></li><li><a href="#18">4.1 Parameters</a></li><li><a href="#19">4.2 Solution</a></li><li><a href="#22">5 Analysis</a></li><li><a href="#23">5.1 Timing and bounces</a></li><li><a href="#24">5.2 Maximum speed experienced by the jumper</a></li><li><a href="#26">5.3 Maximum acceleration experienced by the jumper</a></li><li><a href="#28">5.4 Distance travelled by the jumper</a></li><li><a href="#31">5.5 Automated camera system</a></li><li><a href="#32">5.6 Water touch option</a></li><li><a href="#33">6 Conclusion</a></li></ul></div><h2 id="1">1  Introduction</h2><p>As part of Brisbane's "New World City" transformation, the Brisbane City Council is investigating a proposal to allow bungee jumping off the Story Bridge. This report addresses several key questions about the proposal.</p><p>In Section 2 of this report, the proposal and the key questions relating to it are discussed in more detail.  In Section 3, the model and its equation are discussed in greater detail including where values come as well as outlining assumptions, limitations and the values that shall be used in the model (values for a 80kg person). In Section 4, the model will be formulated and then solved using the numerical method for a second order function. And finally, in Section 5, this report will answer several questions regarding the specifics of the model and what will be expected during the jump.</p><h2 id="2">2  The proposal</h2><p>The proposal calls for a platform to be installed at the very top of the bridge, from which the bungee jumps will take place. This platform will be at a height H from water level and the model produced will describe how y increases as the jumper falls towards the river.</p><h2 id="3">The report will answer the following questions:</h2><div><ol><li>Implement a second order method to solve numerically</li><li>Plot the jumper's position over time</li><li>Does the model agree with 10 bounces across 60 seconds?</li><li>What is the maximum speed and when does it occur?</li><li>What is the maximum acceleration?</li><li>Find how far the jumper travels within 60 seconds</li><li>What delay should the camera at deck height be set to?</li><li>What properties of the bungee rope could be changed to experience a 'Water Touch'?</li></ol></div><p>The approach taken for these questions has been outlined in Section 1 and will use the model described below.</p><h2 id="5">3 The model</h2><p>The equation of motion for bungee jumping is</p><p><img src="Group_13_Project_Script_eq00661610586290158342.png" alt="$$\frac{dv}{dt} = g - C|v|v - \max(0,K(y-L))$$"></p><p>This equation is derived by considering the forces acting on the jumper at all times. These three forces are: 1. Gravity, 2. Drag (also called air resistance); the frictional force due to air and 3. Tension: the pull of the bungee rope when it is taut</p><p>The simplest force to model is gravity: it always acts downwards, and its value is given by <img src="Group_13_Project_Script_eq13680274701471773446.png" alt="$$mg$">, where <img src="Group_13_Project_Script_eq00056382858747494678.png" alt="$$m$"> is the mass of the jumper, and <img src="Group_13_Project_Script_eq02858336398106062199.png" alt="$$g$"> is the gravitational acceleration.</p><p>The next force we consider is drag. This force always acts in the opposite direction to motion and is always slowing the jumper. Its value is given by <img src="Group_13_Project_Script_eq17677671071066918162.png" alt="$$-c|v|v$">, where <img src="Group_13_Project_Script_eq14163252095559040168.png" alt="$$c$"> is the drag coefficient, and <img src="Group_13_Project_Script_eq10963423013235766799.png" alt="$$v$"> is the velocity of the jumper. The absolute value sign of the first factor of <img src="Group_13_Project_Script_eq10963423013235766799.png" alt="$$v$"> ensures it always acts in the opposite direction to motion.</p><p>The final force we must consider is tension. When the bungee rope is taut, it exerts a force on teh jumper proportional to how much it has been stretched (this is called <i>Hookke's Law</i>). This force always acts upwards, pulling the jumper back up. If we let the length of the unstretched rope be <img src="Group_13_Project_Script_eq00437047943045650383.png" alt="$$L$">, then the tension when the rope is taut is given by <img src="Group_13_Project_Script_eq07158336636717063181.png" alt="$$k(y - L)$">, where <img src="Group_13_Project_Script_eq15696396272955440062.png" alt="$$k$"> is the elasticity of the bungee rope. In order to ensure that the tension is only measured when the rope is taut (when <img src="Group_13_Project_Script_eq05947483146223982428.png" alt="$$y &gt; L$">), we write the function as <img src="Group_13_Project_Script_eq14534320775008270317.png" alt="$$-max(0, k(y-L))$">.</p><p>Hence, the equation is <img src="Group_13_Project_Script_eq10341422345960465702.png" alt="$$m\frac{dv}{dt} = mg - C|v|v - \max(0,K(y-L))$"></p><p>And can be simplified to: <img src="Group_13_Project_Script_eq00469397445009166637.png" alt="$$\frac{dv}{dt} = g - C|v|v - \max(0,K(y-L))$"></p><h2 id="12">3.1 Assumptions and limitations of the model</h2><p>The model provided has several limitations that must be addressed. The model assumes optimal conditions for the jump, i.e. no wind and a tide which is at distance H from the jump platform. These factors may effect the jump in several ways which may include creating unsafe jump conditions. Large winds or high tides may mean that a jumper will reach the water level before the rope has enough time to fully decelerate the jumper. If the jumper reaches the water level at a faster speed than recommended they may sustain injury.</p><p>In addition to this, the conducted study also made several assumptions. The study was conducted on one case for an 80kg person and rope length of 25m. This study did not take into account persons of differing body weight from the specified 80kg, which may significantly affect the outcome of the jump, i.e. a person that is significantly lighter will have a much smaller jump fall distance compared with a person who is significantly heavier. Along similar vain, the body shape of the individual may have an impact on the drag experienced, as individuals with a larger surface area will create more drag than those with smaller surface area. Finally, the study also assumed a constant length and "spring constant" for the rope, this is not necessarily the most accurate solution as over time, the length of the rope $$L% will increase and as <img src="Group_13_Project_Script_eq00437047943045650383.png" alt="$$L$"> increases, the "spring constant" <img src="Group_13_Project_Script_eq15696396272955440062.png" alt="$$k$"> will decrease proportionally.</p><h2 id="14">3.2 Parameters</h2><pre class="codeinput">H = 74;             <span class="comment">% Height of jump point (m)</span>
 D = 31;             <span class="comment">% Deck height (m)</span>
 c = 0.9;            <span class="comment">% Drag coefficient (kg/m)</span>
 m = 80;             <span class="comment">% Mass of the jumper (kg)</span>
@@ -75,9 +75,9 @@ k = 90;             <span class="comment">% Spring constant of bungee cord (N/m)
 g = 9.8;            <span class="comment">% Gravitational acceleration (m/s^2)</span>
 C = c/m;            <span class="comment">% Scaled drag coefficient</span>
 K = k/m;            <span class="comment">% Scaled spring constant</span>
-</pre><h2 id="9">4 The numerical method</h2><p>The model itself, is too complicated to solve analytically. So, numerical methods will be used to find solutions. Since the model involves two (2) unknowns, v and y, a second equation is needed that relates the two equations. This relationship is simply that the jumper's velocity (v) is the derivative of the jumper's position (y). Hence, for numerical purposes, we can think of this problem as two ODEs:</p><p><img src="Group_13_Project_Script_eq14634665888582546610.png" alt="$$\frac{dy}{dt} = v$$"></p><p><img src="Group_13_Project_Script_eq00661610586290158342.png" alt="$$\frac{dv}{dt} = g - C|v|v - \max(0,K(y-L))$$"></p><h2 id="12">4.1 Parameters</h2><pre class="codeinput">T = 60;           <span class="comment">% Final time in simulation (s)</span>
+</pre><h2 id="15">4 The numerical method</h2><p>The model itself, is too complicated to solve analytically. So, numerical methods will be used to find solutions. Since the model involves two (2) unknowns, v and y, a second equation is needed that relates the two equations. This relationship is simply that the jumper's velocity (v) is the derivative of the jumper's position (y). Hence, for numerical purposes, we can think of this problem as two ODEs:</p><p><img src="Group_13_Project_Script_eq14634665888582546610.png" alt="$$\frac{dy}{dt} = v$$"></p><p><img src="Group_13_Project_Script_eq00661610586290158342.png" alt="$$\frac{dv}{dt} = g - C|v|v - \max(0,K(y-L))$$"></p><h2 id="18">4.1 Parameters</h2><pre class="codeinput">T = 60;           <span class="comment">% Final time in simulation (s)</span>
 n = 600;          <span class="comment">% Number of subintervals (you decide how many you need)</span>
-</pre><h2 id="13">4.2 Solution</h2><p>The ordinary differential equations are solved using Euler's Method.</p><pre class="codeinput">[t_euler, y_euler, v_euler, h_euler] = euler_bungee(T, n, g, C, K, L);
+</pre><h2 id="19">4.2 Solution</h2><p>The ordinary differential equations are solved using Euler's Method.</p><pre class="codeinput">[t_euler, y_euler, v_euler, h_euler] = euler_bungee(T, n, g, C, K, L);
 </pre><p>The Second Order Differential equations are solved using Modified Euler's Method.</p><pre class="codeinput">f = @(t,y,v) g - C*abs(v).*v - max(0, K.*(y - L));
 [t_modeuler, y_modeuler, v_modeuler, h_modeuler] = modeuler_bungee(T, n, g, C, K, L, f);
 </pre><pre class="codeinput">figure(1)
@@ -93,12 +93,12 @@ xlabel(<span class="string">'Time (s)'</span>);
 ylabel(<span class="string">'Distance fallen (m)'</span>);
 axis([0 60 0 60]);
 title(<span class="string">"Figure 2: Modified Euler's Method for Jump position"</span>);
-</pre><img vspace="5" hspace="5" src="Group_13_Project_Script_01.png" alt=""> <img vspace="5" hspace="5" src="Group_13_Project_Script_02.png" alt=""> <h2 id="16">5 Analysis</h2><h2 id="17">5.1 Timing and bounces</h2><p>Looking at Figure 2 we can see that across a period of 60 seconds there are 10 bounces. Thus agreeing with the proposed goal of the experience.</p><h2 id="18">5.2 Maximum speed experienced by the jumper</h2><p>The "thrill factor" of bungee jumping is atleast partly determined by the maximum velocity experienced by the jumper. What is the maximum speed and when does it occur?</p><pre class="codeinput">figure(3)
+</pre><img vspace="5" hspace="5" src="Group_13_Project_Script_01.png" alt=""> <img vspace="5" hspace="5" src="Group_13_Project_Script_02.png" alt=""> <h2 id="22">5 Analysis</h2><h2 id="23">5.1 Timing and bounces</h2><p>Looking at Figure 2 we can see that across a period of 60 seconds there are 10 bounces. Thus agreeing with the proposed goal of the experience.</p><h2 id="24">5.2 Maximum speed experienced by the jumper</h2><p>The "thrill factor" of bungee jumping is atleast partly determined by the maximum velocity experienced by the jumper. What is the maximum speed and when does it occur?</p><pre class="codeinput">figure(3)
 plot(t_modeuler,v_modeuler)
 title(<span class="string">'Figure 3: Velocity of modeuler function for jump'</span>)
 xlabel(<span class="string">'Time (s)'</span>)
 ylabel(<span class="string">'Jumper Velocity (m/s)'</span>)
-</pre><img vspace="5" hspace="5" src="Group_13_Project_Script_03.png" alt=""> <p>The greatest velocity is 19.99m/s at 2.6 seconds into the jump. In relation to the jump, this velocity occurs during the initial jump when the bungie cord reaches its maximum length but hasn't started stretching and slowing down the jumper.</p><h2 id="20">5.3 Maximum acceleration experienced by the jumper</h2><p>Another factor important for thrill-seekers is the maximum acceleration experienced. Greater acceleration means bigger thrills but too much might kill the customer. Show through mathematical methods what the jumpers maximum acceleration is and when it occurs in relation to the whole jump.</p><pre class="codeinput">a_modeuler = TTA(v_modeuler, t_modeuler, 601);
+</pre><img vspace="5" hspace="5" src="Group_13_Project_Script_03.png" alt=""> <p>The greatest velocity is 19.99m/s at 2.6 seconds into the jump. In relation to the jump, this velocity occurs during the initial jump when the bungie cord reaches its maximum length but hasn't started stretching and slowing down the jumper.</p><h2 id="26">5.3 Maximum acceleration experienced by the jumper</h2><p>Another factor important for thrill-seekers is the maximum acceleration experienced. Greater acceleration means bigger thrills but too much might kill the customer. Show through mathematical methods what the jumpers maximum acceleration is and when it occurs in relation to the whole jump.</p><pre class="codeinput">a_modeuler = TTA(v_modeuler, t_modeuler, 601);
 t_modeuler2 = t_modeuler;
 t_modeuler2(:, 1) = [];
 figure(4)
@@ -106,14 +106,14 @@ plot(t_modeuler2,a_modeuler)
 title(<span class="string">'Figure 4: Acceleration of modeuler function for jump'</span>)
 xlabel(<span class="string">'Time (s)'</span>)
 ylabel(<span class="string">'Jumper Acceleration (m/s^2)'</span>)
-</pre><img vspace="5" hspace="5" src="Group_13_Project_Script_04.png" alt=""> <p>The highest absolute acceleration is 18.29 at 4.3s. This is when the jumper is coming up from the first bounce in relation to the overall jump. The claim of up to 2g is supported by the model since the absolute acceleration goes to 18.29 which is approximately 1.87g which falls within the claim while also being close enough to 2g for customers to get a thrill.</p><h2 id="22">5.4 Distance travelled by the jumper</h2><p>To compute the distance travelled by the jumper we must find the integral. We will use the trapezoidal method to find the definite integral.</p><p><img src="Group_13_Project_Script_eq18014928761163519262.png" alt="$$\int\limits_{0}^{60}|v|\mathrm{d}t \approx \frac{h}{2}[|v|(0) +&#xA;\sum_{i=1}^{n-1}|v|(i) + |v|(n)]$$&#xA;where&#xA;$$h = \frac{60-0}{n}$$"></p><pre class="codeinput">v_abs = abs(v_modeuler);
+</pre><img vspace="5" hspace="5" src="Group_13_Project_Script_04.png" alt=""> <p>The highest absolute acceleration is 18.29 at 4.3s. This is when the jumper is coming up from the first bounce in relation to the overall jump. The claim of up to 2g is supported by the model since the absolute acceleration goes to 18.29 which is approximately 1.87g which falls within the claim while also being close enough to 2g for customers to get a thrill.</p><h2 id="28">5.4 Distance travelled by the jumper</h2><p>To compute the distance travelled by the jumper we must find the integral. We will use the trapezoidal method to find the definite integral.</p><p><img src="Group_13_Project_Script_eq18014928761163519262.png" alt="$$\int\limits_{0}^{60}|v|\mathrm{d}t \approx \frac{h}{2}[|v|(0) +&#xA;\sum_{i=1}^{n-1}|v|(i) + |v|(n)]$$&#xA;where&#xA;$$h = \frac{60-0}{n}$$"></p><pre class="codeinput">v_abs = abs(v_modeuler);
 v_dist = trapezoidal_integration(v_abs,T/n)
 </pre><pre class="codeoutput">
 v_dist =
 
   280.4992
 
-</pre><p>The distance presented above is the total distance travelled between time=0s and time=60s for the jumper.</p><h2 id="25">5.5 Automated camera system</h2><p>Describe the question, and then answer it.  In this case, you will fit an interpolating polynomial through the four points in your solution <img src="Group_13_Project_Script_eq08830444604280721118.png" alt="$y$"> that lie either side of the camera location.  Then use that polynomial to solve for when the jumper passes the camera.</p><pre class="codeinput">int_deck = 43;
+</pre><p>The distance presented above is the total distance travelled between time=0s and time=60s for the jumper.</p><h2 id="31">5.5 Automated camera system</h2><p>Describe the question, and then answer it.  In this case, you will fit an interpolating polynomial through the four points in your solution <img src="Group_13_Project_Script_eq08830444604280721118.png" alt="$y$"> that lie either side of the camera location.  Then use that polynomial to solve for when the jumper passes the camera.</p><pre class="codeinput">int_deck = 43;
 int_i = first_in_tol(y_modeuler, int_deck, 1);
 int_array = zeros(4,1);
 <span class="comment">% Check if index is above or below desired value and create set of values</span>
@@ -131,16 +131,34 @@ int_array = zeros(4,1);
     int_array(4) = y_modeuler(int_i+2);
     int_X = t_modeuler(int_i-1):t_modeuler(2):t_modeuler(int_i+2);
 <span class="keyword">end</span>
-int_x = int_X(1):0.001:int_X(end);
 int_diff = forward_differences(int_array);
-int_eval = forward_eval(int_X,int_diff,int_x);
-figure(5);
-plot(int_X,int_array,<span class="string">"r*"</span>);
-hold <span class="string">on</span>;
-plot(int_x,int_eval);
-title(<span class="string">"Figure 5: Generating interpolating polynomial around y=43"</span>);
-int_time = t_modeuler(first_in_tol(int_eval,int_deck,10^-2));
-</pre><img vspace="5" hspace="5" src="Group_13_Project_Script_05.png" alt=""> <h2 id="26">5.6 Water touch option</h2><p>Describe the question, and then answer it.  In this case, you will re-solve the equations with different parameters for <img src="Group_13_Project_Script_eq11904963258706611165.png" alt="$L$"> and <img src="Group_13_Project_Script_eq15636846968047188835.png" alt="$k$">. Experiment to find which values work best for the water touch option, but include only the best combination that you found in the submitted code.</p><h2 id="27">6 Conclusion</h2><p>Conclude your report by summing up your findings and making any recommendations.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2018b</a><br></p></div><!--
+
+int_tol = 0.000001;
+int_rootfind = NaN;
+<span class="keyword">while</span> isnan(int_rootfind) &amp;&amp; int_tol &lt; 1
+    int_x = int_X(1):int_tol:int_X(end);
+    int_eval = forward_eval(int_X,int_diff,int_x);
+    figure(5);
+    plot(int_X,int_array,<span class="string">"r*"</span>);
+    hold <span class="string">on</span>;
+    plot(int_x,int_eval);
+    title(<span class="string">"Figure 5: Generating interpolating polynomial around y=43"</span>);
+    int_rootfind = first_in_tol(int_eval, int_deck, 0.00001);
+    int_tol = int_tol*10;
+<span class="keyword">end</span>
+int_x(int_rootfind)
+int_eval(int_rootfind)
+</pre><pre class="codeoutput">
+ans =
+
+    3.3364
+
+
+ans =
+
+   43.0000
+
+</pre><img vspace="5" hspace="5" src="Group_13_Project_Script_05.png" alt=""> <h2 id="32">5.6 Water touch option</h2><p>Describe the question, and then answer it.  In this case, you will re-solve the equations with different parameters for <img src="Group_13_Project_Script_eq11904963258706611165.png" alt="$L$"> and <img src="Group_13_Project_Script_eq15636846968047188835.png" alt="$k$">. Experiment to find which values work best for the water touch option, but include only the best combination that you found in the submitted code.</p><h2 id="33">6 Conclusion</h2><p>Conclude your report by summing up your findings and making any recommendations.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2018b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% MXB103 Project Group 13:  BUNGEE!
 
@@ -184,13 +202,57 @@ int_time = t_modeuler(first_in_tol(int_eval,int_deck,10^-2));
 %%
 % $$\frac{dv}{dt} = g - C|v|v - \max(0,K(y-L))$$
 %
-% Write a paragraph or two about the equation, including where it comes
-% from and what the symbols mean.
+% This equation is derived by considering the forces acting on the jumper
+% at all times. These three forces are: 1. Gravity, 2. Drag (also called 
+% air resistance); the frictional force due to air and 3. Tension: the pull
+% of the bungee rope when it is taut
+%%
+% The simplest force to model is gravity: it always acts downwards, and
+% its value is given by $$mg$, where $$m$ is the mass of the jumper, and
+% $$g$ is the gravitational acceleration.
+%%
+% The next force we consider is drag. This force always acts in the
+% opposite direction to motion and is always slowing the jumper. Its value
+% is given by $$-c|v|v$, where $$c$ is the drag coefficient, and $$v$ is the
+% velocity of the jumper. The absolute value sign of the first factor of
+% $$v$ ensures it always acts in the opposite direction to motion.
+%%
+% The final force we must consider is tension. When the bungee rope is taut,
+% it exerts a force on teh jumper proportional to how much it has been
+% stretched (this is called _Hookke's Law_). This force always acts
+% upwards, pulling the jumper back up. If we let the length of the
+% unstretched rope be $$L$, then the tension when the rope is taut is given
+% by $$k(y - L)$, where $$k$ is the elasticity of the bungee rope. In order
+% to ensure that the tension is only measured when the rope is taut (when
+% $$y > L$), we write the function as $$-max(0, k(y-L))$.
+%%
+% Hence, the equation is $$m\frac{dv}{dt} = mg - C|v|v - \max(0,K(y-L))$
+%%
+% And can be simplified to: $$\frac{dv}{dt} = g - C|v|v - \max(0,K(y-L))$
 
-%% 3.1 Assumptions and limitations
-%
-% Write a paragraph on the assumptions and limitations on the model,
-% and a paragraph on the limitations on the study you have conducted.
+%% 3.1 Assumptions and limitations of the model
+% The model provided has several limitations that must be addressed. The
+% model assumes optimal conditions for the jump, i.e. no wind and a tide
+% which is at distance H from the jump platform. These factors may effect
+% the jump in several ways which may include creating unsafe jump 
+% conditions. Large winds or high tides may mean that a jumper will reach 
+% the water level before the rope has enough time to fully decelerate the 
+% jumper. If the jumper reaches the water level at a faster speed than
+% recommended they may sustain injury.
+%%
+% In addition to this, the conducted study also made several assumptions.
+% The study was conducted on one case for an 80kg person and rope length of
+% 25m. This study did not take into account persons of differing body
+% weight from the specified 80kg, which may significantly affect the
+% outcome of the jump, i.e. a person that is significantly lighter will
+% have a much smaller jump fall distance compared with a person who is
+% significantly heavier. Along similar vain, the body shape of the
+% individual may have an impact on the drag experienced, as individuals
+% with a larger surface area will create more drag than those with smaller
+% surface area. Finally, the study also assumed a constant length and
+% "spring constant" for the rope, this is not necessarily the most accurate
+% solution as over time, the length of the rope $$L% will increase and as
+% $$L$ increases, the "spring constant" $$k$ will decrease proportionally.
 
 %% 3.2 Parameters
 H = 74;             % Height of jump point (m)
@@ -336,15 +398,23 @@ else
     int_array(4) = y_modeuler(int_i+2);
     int_X = t_modeuler(int_i-1):t_modeuler(2):t_modeuler(int_i+2);
 end
-int_x = int_X(1):0.001:int_X(end);
 int_diff = forward_differences(int_array);
-int_eval = forward_eval(int_X,int_diff,int_x);
-figure(5);
-plot(int_X,int_array,"r*");
-hold on;
-plot(int_x,int_eval);
-title("Figure 5: Generating interpolating polynomial around y=43");
-int_time = t_modeuler(first_in_tol(int_eval,int_deck,10^-2));
+
+int_tol = 0.000001;
+int_rootfind = NaN;
+while isnan(int_rootfind) && int_tol < 1
+    int_x = int_X(1):int_tol:int_X(end);
+    int_eval = forward_eval(int_X,int_diff,int_x);
+    figure(5);
+    plot(int_X,int_array,"r*");
+    hold on;
+    plot(int_x,int_eval);
+    title("Figure 5: Generating interpolating polynomial around y=43");
+    int_rootfind = first_in_tol(int_eval, int_deck, 0.00001);
+    int_tol = int_tol*10;
+end
+int_x(int_rootfind)
+int_eval(int_rootfind)
 
 %% 5.6 Water touch option
 %
