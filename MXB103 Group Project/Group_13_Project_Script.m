@@ -40,57 +40,13 @@
 %%
 % $$\frac{dv}{dt} = g - C|v|v - \max(0,K(y-L))$$
 %
-% This equation is derived by considering the forces acting on the jumper
-% at all times. These three forces are: 1. Gravity, 2. Drag (also called 
-% air resistance); the frictional force due to air and 3. Tension: the pull
-% of the bungee rope when it is taut
-%%
-% The simplest force to model is gravity: it always acts downwards, and
-% its value is given by $$mg$, where $$m$ is the mass of the jumper, and
-% $$g$ is the gravitational acceleration.
-%%
-% The next force we consider is drag. This force always acts in the
-% opposite direction to motion and is always slowing the jumper. Its value
-% is given by $$-c|v|v$, where $$c$ is the drag coefficient, and $$v$ is the
-% velocity of the jumper. The absolute value sign of the first factor of
-% $$v$ ensures it always acts in the opposite direction to motion.
-%%
-% The final force we must consider is tension. When the bungee rope is taut,
-% it exerts a force on teh jumper proportional to how much it has been
-% stretched (this is called _Hookke's Law_). This force always acts
-% upwards, pulling the jumper back up. If we let the length of the
-% unstretched rope be $$L$, then the tension when the rope is taut is given
-% by $$k(y - L)$, where $$k$ is the elasticity of the bungee rope. In order
-% to ensure that the tension is only measured when the rope is taut (when
-% $$y > L$), we write the function as $$-max(0, k(y-L))$.
-%%
-% Hence, the equation is $$m\frac{dv}{dt} = mg - C|v|v - \max(0,K(y-L))$
-%%
-% And can be simplified to: $$\frac{dv}{dt} = g - C|v|v - \max(0,K(y-L))$
+% Write a paragraph or two about the equation, including where it comes
+% from and what the symbols mean.
 
-%% 3.1 Assumptions and limitations of the model
-% The model provided has several limitations that must be addressed. The
-% model assumes optimal conditions for the jump, i.e. no wind and a tide
-% which is at distance H from the jump platform. These factors may effect
-% the jump in several ways which may include creating unsafe jump 
-% conditions. Large winds or high tides may mean that a jumper will reach 
-% the water level before the rope has enough time to fully decelerate the 
-% jumper. If the jumper reaches the water level at a faster speed than
-% recommended they may sustain injury.
-%%
-% In addition to this, the conducted study also made several assumptions.
-% The study was conducted on one case for an 80kg person and rope length of
-% 25m. This study did not take into account persons of differing body
-% weight from the specified 80kg, which may significantly affect the
-% outcome of the jump, i.e. a person that is significantly lighter will
-% have a much smaller jump fall distance compared with a person who is
-% significantly heavier. Along similar vain, the body shape of the
-% individual may have an impact on the drag experienced, as individuals
-% with a larger surface area will create more drag than those with smaller
-% surface area. Finally, the study also assumed a constant length and
-% "spring constant" for the rope, this is not necessarily the most accurate
-% solution as over time, the length of the rope $$L% will increase and as
-% $$L$ increases, the "spring constant" $$k$ will decrease proportionally.
+%% 3.1 Assumptions and limitations
+%
+% Write a paragraph on the assumptions and limitations on the model,
+% and a paragraph on the limitations on the study you have conducted.
 
 %% 3.2 Parameters
 H = 74;             % Height of jump point (m)
@@ -180,15 +136,17 @@ ylabel('Jumper Velocity (m/s)')
 % kill the customer. Show through mathematical methods what the jumpers
 % maximum acceleration is and when it occurs in relation to the whole jump.
 
-a_modeuler = TTA(v_modeuler, t_modeuler, 601);
-t_modeuler2 = t_modeuler;
-t_modeuler2(:, 1) = [];
+
+a_modeuler = first_order_forward(v_modeuler, n, T);
+% a_modeuler = TTA(v_modeuler, t_modeuler, 601);
+% t_modeuler2 = t_modeuler;
+% t_modeuler2(:, 1) = [];
 figure(4)
-plot(t_modeuler2,a_modeuler)
+plot(t_modeuler(1:end-1),a_modeuler)
 title('Figure 4: Acceleration of modeuler function for jump')
 xlabel('Time (s)')
 ylabel('Jumper Acceleration (m/s^2)')
-
+ylim([-20,15])
 %%
 % The highest absolute acceleration is 18.29 at 4.3s. This is when the
 % jumper is coming up from the first bounce in relation to the overall jump.
@@ -218,41 +176,10 @@ v_dist = trapezoidal_integration(v_abs,T/n)
 % fit an interpolating polynomial through the four points in your solution
 % $y$ that lie either side of the camera location.  Then use that
 % polynomial to solve for when the jumper passes the camera.
-int_deck = 43;
-int_i = first_in_tol(y_modeuler, int_deck, 1);
-int_array = zeros(4,1);
-% Check if index is above or below desired value and create set of values
-% accordingly
-if y_modeuler(int_i) >= int_deck
-    int_array(1) = y_modeuler(int_i-2);
-    int_array(2) = y_modeuler(int_i-1);
-    int_array(3) = y_modeuler(int_i);
-    int_array(4) = y_modeuler(int_i+1);
-    int_X = t_modeuler(int_i-2):t_modeuler(2):t_modeuler(int_i+1);
-else
-    int_array(1) = y_modeuler(int_i-1);
-    int_array(2) = y_modeuler(int_i);
-    int_array(3) = y_modeuler(int_i+1);
-    int_array(4) = y_modeuler(int_i+2);
-    int_X = t_modeuler(int_i-1):t_modeuler(2):t_modeuler(int_i+2);
-end
-int_diff = forward_differences(int_array);
-
-int_tol = 0.000001;
-int_rootfind = NaN;
-while isnan(int_rootfind) && int_tol < 1
-    int_x = int_X(1):int_tol:int_X(end);
-    int_eval = forward_eval(int_X,int_diff,int_x);
-    int_rootfind = first_in_tol(int_eval, int_deck, 0.00001);
-    int_tol = int_tol*10;
-end
-figure(5);
-plot(int_X,int_array,"r*");
-hold on;
-plot(int_x,int_eval);
-title("Figure 5: Generating interpolating polynomial around y=43");
-int_x(int_rootfind)
-int_eval(int_rootfind)
+[Nearest_vals,indexes] = find_vals(y_modeuler,H-D);
+T_table = forward_differences(Nearest_vals);
+[time_index,i] = secant2(Nearest_vals, indexes, T_table, 43, 0.01, 20);
+time = time_index * T / n;
 
 %% 5.6 Water touch option
 %
@@ -261,11 +188,47 @@ int_eval(int_rootfind)
 % Experiment to find which values work best for the water touch option, but 
 % include only the best combination that you found in the submitted code.
 
+% Assume person can reach down 2 metres to touch water
+Distance_from_water = H-max(y_modeuler)-2
+
+accuracies = [50,10,5,1,0.5,0.1]
+L_new = L; k_new = k; i = 0;
+while(1)
+    if L==L_new && k==k_new
+        i = i+1
+        accuracy = accuracies(i)
+    end
+        L = L_new;
+        k = k_new;
+    [Distance_from_water_new,L_new,k_new,peaks] = improve_rope_constants(L,k,accuracy,T,n,g,C,m,H);
+    if abs(Distance_from_water_new) < 0.1 
+        Distance_from_water_new, L_new, k_new
+        break;
+    end
+end
+K_new = k_new/m;
+Distance_from_water_new, L_new, k_new
+f = @(t,y,v) g - C*abs(v).*v - max(0, K_new.*(y - L_new));
+[t_modeuler_new, y_modeuler_new, v_modeuler_new, h_modeuler_new] = modeuler_bungee(T, n, g, C, K_new, L_new, f);
+
+figure(5)
+plot(t_modeuler_new, y_modeuler_new);
+xlabel('Time (s)');
+ylabel('Distance fallen (m)');
+axis([0 60 0 90]);
+title("Figure 2: Modified Euler's Method for New Jump position");
+
+a_modeuler_new = first_order_forward(v_modeuler_new, n, T);
+figure(6)
+plot(t_modeuler_new(1:end-1),a_modeuler_new)
+title('Figure 4: Acceleration of modeuler function for jump')
+xlabel('Time (s)')
+ylabel('Jumper Acceleration (m/s^2)')
+ylim([-20,15])
 %% 6 Conclusion
 %
 % Conclude your report by summing up your findings and making any
 % recommendations.
-
 
 
 
