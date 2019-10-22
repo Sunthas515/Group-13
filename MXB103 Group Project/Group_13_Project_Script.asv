@@ -161,7 +161,6 @@ ylim([-20,15])
 % \sum_{i=1}^{n-1}|v|(i) + |v|(n)]$$
 % where
 % $$h = \frac{60-0}{n}$$
-
 v_abs = abs(v_modeuler);
 distance_travelled = trapezoidal_integration(v_abs,T/n)
 %%
@@ -173,11 +172,8 @@ distance_travelled = trapezoidal_integration(v_abs,T/n)
 % The proposal for an installation of an automated camera system has been
 % considered in terms of whether it can be set to trigger at a given time.
 [Nearest_vals,indexes] = find_vals(y_modeuler,H-D)
-
 T_table = forward_differences(Nearest_vals)
-
 [time_index,i] = secant2(Nearest_vals, indexes, T_table, 43, 0.01, 20)
-
 time = time_index * T / n
 %%
 % As per the parameters given, for an 80kg jumper. The camera can be
@@ -197,25 +193,20 @@ accuracies = [50,10,5,1,0.5,0.1];
 L_new = L; k_new = k; i = 0;
 
 while(1) %Loop until Distance_from_water_new < 0.1
-    
     if L==L_new && k==k_new %iterate through L and k values
         i = i+1;
         accuracy = accuracies(i);
     end
-    
-    L = L_new; %set values = new values
-    k = k_new;
-    
+        L = L_new; %set values = new values
+        k = k_new;
     [Distance_from_water_new,L_new,k_new] = improve_rope_constants(L,k,accuracy,T,n,g,C,m,H);
-    
     if abs(Distance_from_water_new) < 0.1 
         Distance_from_water_new, L_new, k_new
         break;
     end
-    
 end
 
-%Create new model with discovered values
+%C
 K_new = k_new/m;
 f = @(t,y,v) g - C*abs(v).*v - max(0, K_new.*(y - L_new));
 [t_modeuler_new, y_modeuler_new, v_modeuler_new, h_modeuler_new] = modeuler_bungee(T, n, g, C, K_new, L_new, f);
