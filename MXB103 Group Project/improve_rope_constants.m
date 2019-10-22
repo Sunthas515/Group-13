@@ -1,4 +1,4 @@
-function [Distance_from_water,L_new,k_new,peaks] = improve_rope_constants(L,k,accuracy,T,n,g,C,m,H)
+function [Distance_from_water,L_new,k_new] = improve_rope_constants(L,k,accuracy,T,n,g,C,m,H)
     Distance_from_water = 100;
     for i = L-L*accuracy/100:L*accuracy/100:L+L*accuracy/100
         for j = k-k*accuracy/100:k*accuracy/100:k+k*accuracy/100
